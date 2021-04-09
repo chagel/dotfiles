@@ -14,8 +14,19 @@ export PATH="$SCRIPTS:$PATH"
 export PATH=$(ruby -e "puts ENV['PATH'].split(':').uniq.sort.join(':')")
 
 # enter xwindow after console login
-if [[ "Darwin" != $(uname -s) ]]; then
-  if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    exec startx
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  xset r rate 300 50
+
+  rescuetime > /dev/null &
+
+  if [[ -z $DISPLAY && $(tty) == /dev/tty1 && $XDG_SESSION_TYPE == tty ]]; then
+    GTK_IM_MODULE=ibus
+    QT_IM_MODULE=ibus
+    XMODIFIERS=@im=ibus
+
+    export XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
+    ibus-daemon -drx
+
+    MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
   fi
 fi
