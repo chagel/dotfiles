@@ -1,0 +1,84 @@
+#!/bin/sh
+#
+# ANY PLACE AS A WALLPAPER
+#
+# dependencies:
+# [xdpyinfo]
+# [feh]
+# [jq]      https://stedolan.github.io/jq
+# [paferes] https://github.com/sindresorhus/pageres-cli
+#
+# services:
+# [ipstack] https://ipstack.com
+# [positionstack] https://positionstack.com
+# [mapbox]  http://mapbox.com
+
+REPO="$HOME/.config/wallpaper"
+IS_TOKEN=$(pass keys/ipstack)
+PS_TOKEN=$(pass keys/positionstack)
+PLACE="me"
+WS_PID=""
+
+ip() {
+  echo $(curl --silent https://ifconfig.me)
+}
+
+coords_from_place() {
+  gps=$(curl --silent -G --data-urlencode "access_key=$PS_TOKEN" --data-urlencode "query=$1" http://api.positionstack.com/v1/forward) 
+  lat=$(echo $gps | jq -r ".data[0].latitude")
+  lng=$(echo $gps | jq -r ".data[0].longitude")
+  echo "lat=$lat&lng=$lng"
+}
+
+coords_from_ip() {
+  gps=$(curl --silent http://api.ipstack.com/$1?access_key=$IS_TOKEN&format=json) 
+  lat=$(echo $gps| jq -r '.latitude')
+  lng=$(echo $gps| jq -r '.longitude')
+  echo "lat=$lat&lng=$lng"
+}
+
+start_ws() {
+  ruby -run -ehttpd . -p 8000 & 
+  WS_PID=$!
+}
+
+map_url() {
+  style="dark-v8" #light, dark, streets-v10, outdoors, satellite
+  token="$(pass keys/mapbox_token)"
+  zoom=12
+  url="http://localhost:8000/map.html?$1&token=$token&zoom=$zoom&style=$style"
+  echo $url
+}
+
+res() {
+  xdpyinfo | awk '/dimensions/{print $2}'
+}
+
+capture() {
+  pageres $1 $2 --filename="$(date +%s000)-$PLACE" --overwrite --d=10 --hide='.mapboxgl-ctrl-attrib' > /dev/null
+}
+
+relink() {
+  latest=$(ls *.png | grep -v current | sort -V | tail -n 1)
+  ln -fs $latest current.png
+}
+
+setwall() {
+  feh --bg-tile current.png
+}
+
+PLACE=$1
+
+if [[ -n "$PLACE" ]]; then
+  gps=$(coords_from_place $PLACE)
+else
+  gps=$(coords_from_ip $(ip))
+fi
+
+cd $REPO && start_ws
+
+capture $(map_url $gps) $(res)
+relink 
+setwall
+
+kill $WS_PID 

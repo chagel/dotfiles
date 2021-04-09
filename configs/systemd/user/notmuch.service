@@ -1,0 +1,6 @@
+[Unit]
+Description=Notmuch index service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/notmuch new --quiet

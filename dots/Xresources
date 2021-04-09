@@ -1,0 +1,12 @@
+!--------------------xdefauls
+
+Xcursor.size:           48
+
+Xft*dpi:                220
+Xft*antialias:          true
+Xft*hinting:            true
+Xft*hintingstyle:       higtslight
+Xft.rgba:               rgb
+Xft.lcdfilter:          Icddefault
+
+xterm*metaSendsEscape:  true

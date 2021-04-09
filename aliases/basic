@@ -1,0 +1,22 @@
+alias reload="source ~/.bash_profile"
+alias c="clear"
+alias l="ls -la"
+alias ll="ls -lG"
+alias lt="ls -lGt | head"
+alias o="handlr open"
+
+alias e="vim"
+
+alias vie="vim ~/.vimrc"
+alias vit="vim ~/.tmux.conf"
+alias vib="vim ~/.bash_profile"
+alias vid="vim ~/Dotfiles/"
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+
+export LESS=' -R '
+
+export EDITOR="nvim"
+export CDPATH="$HOME/workspace"
+

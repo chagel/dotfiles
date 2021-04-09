@@ -1,0 +1,96 @@
+Oh-My-Dotfiles                                                  *omd-tips.txt* 
+
+=============================================================================
+My tips                                                             *omd-tips* 
+
+I keep a list of notes for tools I use often. These are mainly about shortcuts 
+and things are easy to be forgetten. I write these tips with help doc, because 
+I can call `:help omd-xxx` anytime in the vim.
+
+Kudo to VIM Table Mode.
+
+-----------------------------------------------------------------------------
+1. Vim                                                               *omd-vim*
+
+|------------------------------------|-----------|--------------------------|
+| Action                             | Category  |                  Trigger |
+|------------------------------------|-----------|-------------------------:|
+| Move by letters or words           |           |              Space, w, b |
+| Jump to last edit pos              |           |                       gi |
+| Delete the whole line and change   |           |                        S |
+| Delete after the cursor and change |           |                        C |
+| Delete cursor and change           |           |                        s |
+| Replace cursor                     |           |                      r/R |
+| Format all paragphs                |           |                gqg / gqG |
+| Mark and go                        |           |              m[a-z] / 'a |
+| Regex find and replace             |           |            :%s/foo/bar/g |
+| Indent selection                   |           |                        = |
+| Switch splits                      |           |           ctrl+w H/J/K/L |
+| Close all other panes              |           |                   ctrl+o |
+| Resize vsplit width                |           |              ctrl+w 50 > |
+| Navigate splits                    |           |           ctrl + h/j/k/l |
+| Swap windows                       |           | ctrl-w ctrl-r / ctrl-w x |
+| Fold first or all levels           |           |                    zm zM |
+| Unfold first or all levels         |           |                    zr zR |
+| Jump to matched closeure           |           |                        % |
+| Jump to last edited                |           |                       g, |
+| Repeat                             |           |                  @: / @@ |
+| Comment/uncomment                  | commenter |                  ,cc ,cu |
+| Jump to class or method            | ruby      |             [m / ]m / [[ |
+| Operate on block                   | ruby      |          (v/c/d/y)(i/a)m |
+| Jump to file                       | rails     |                       gf |
+| Jump to other files                | rails     |                       :A |
+| Jump to associated files           | rails     |                       :R |
+| New file                           | netrw     |                        % |
+| New dir                            | netrw     |                        d |
+| Delete                             | netrw     |                        D |
+| Rename                             | netrw     |                        R |
+| Show all files                     | netrw     |                        I |
+| Current line to top                |           |                       zt |
+| Current line to middle             |           |                  z. / zz |
+| Current line to bottom             |           |                       zb |
+| Join lines                         | splitjoin |                       gJ |
+| Split lines                        | splitjoin |                       gS |
+| Next conflict                      | diff      |                       ]c |
+| Previous conflict                  | diff      |                       [c |
+| Obtain right changes               | diff      |                       do |
+| Push changes to right              | diff      |                       dp |
+|------------------------------------|-----------|--------------------------|
+
+Profiling VIM performance  
+>
+   :profile start profile.log
+   :profile func *
+   :profile file *
+   "At this point do slow actions
+   :profile pause
+   :noautocmd qall!
+<
+
+-----------------------------------------------------------------------------
+2. Tmux                                                             *omd-tmux*
+
+|----------------------------------|----------------------------|
+| Action                           |                    Trigger |
+|----------------------------------|---------------------------:|
+| `                                |                   <PREFIX> |
+| Adjust pane size                 |           <PREFIX> + ARROW |
+| Delete current pane              |               <PREFIX> + x |
+| New horizontal pane              |               <PREFIX> + - |
+| New vertical pane                |              <PREFIX> + \| |
+| New window                       |               <PREFIX> + c |
+| Rename window                    |               <PREFIX> + , |
+| Focus current pane               |               <PREFIX> + z |
+| Apply next layout                |           <PREFIX> + Space |
+| Switch pane layout               | <PREFIX> + <option> + 1..5 |
+| help                             |               <PREFIX> + ? |
+| Copy mode                        |               <PREFIX> + [ |
+| Move pane to new window          |               <PREFIX> + ! |
+| Display pane number              |               <PREFIX> + q |
+| Swap right/left panes            |             <PREFIX> + {/} |
+| Move to the left by one position |          swap-window -t -1 |
+|----------------------------------|----------------------------|
+
+
+=============================================================================
+vim:tw=78:ts=2:ft=help:norl:

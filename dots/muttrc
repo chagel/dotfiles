@@ -1,0 +1,116 @@
+bind editor <space> noop
+bind index,pager g noop
+
+folder-hook "gmail" 'source ~/.config/mutt/accounts/gmail'
+folder-hook "pipi"  'source ~/.config/mutt/accounts/pipi'
+folder-hook "icloud"    'source ~/.config/mutt/accounts/icloud'
+
+source ~/.config/mutt/themes/custom
+source ~/.config/mutt/accounts/gmail
+
+# performance turning
+folder-hook . 'set read_inc=1000'
+
+set mail_check = 5
+set date_format="%b %d %I:%M %p"
+set index_format='%4C %zs %<[y?%<[m?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%m/%y ]> %?X?[A]&   ? [ %-15.15L ] %s'
+set markers = no
+set mark_old = no
+set move = no
+set sleep_time = 0
+set sort = threads
+set sort_aux = reverse-last-date-received
+set editor = $EDITOR
+set quit = ask-yes
+set fast_reply=yes
+set include=yes
+set edit_headers=yes
+#set smart_wrap
+set text_flowed=yes
+
+auto_view text/html
+#alternative_order text/enriched text/html text/plain
+alternative_order text/plain text/enriched text/html 
+
+bind index G last-entry
+bind index gg first-entry
+bind index d half-down
+bind index u half-up
+bind index D delete-message
+bind index U undelete-message
+bind index F search
+bind index o display-message
+bind index x tag-thread
+bind index,pager R group-reply
+bind index,pager S flag-message
+bind pager j next-line
+bind pager k previous-line
+bind pager gg top
+bind pager G bottom
+bind pager o exit
+bind attach <return> view-mailcap
+macro index,pager H "<pipe-message>htmail-decode<return>" "render html mail using htmail-view"
+
+# Sidebar mappings
+set sidebar_visible = yes
+set sidebar_width = 20
+set sidebar_short_path = yes
+set sidebar_next_new_wrap = yes
+set mail_check_stats
+set sidebar_format = '%B %?N?[%N]?%* %S'
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
+#bind index,pager \Cp sidebar-prev-new
+#bind index,pager \Cn sidebar-next-new
+bind index,pager B sidebar-toggle-visible
+set sort_browser="reverse-count"
+
+# pager customization
+set pager_index_lines   = 10    # number of index lines to show
+set pager_context       = 3     # number of context lines to show
+
+macro index \Cf \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape>notmuch-mutt -r --prompt search<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: search mail"
+
+macro index <F2> \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>notmuch-mutt -r thread<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: reconstruct thread"
+
+macro index <F6> \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>notmuch-mutt tag -- -inbox<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: remove message from inbox"
+
+macro index <F5> \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>mbsync $(basename $folder)<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"mbsync: retrieving new mails"
+
+macro index gu "<limit>~U<enter>"
+macro index ga "<limit>~X >0<enter>"
+
+macro index,pager ! <save-message>=Spam<enter> "Report spam"
+macro index I <tag-pattern>~U<enter><tag-prefix>WN<untag-pattern>~T<enter>
+macro pager U <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+macro attach W '<save-entry><kill-line>~/.mail_attachments/'
+macro index,pager X '<pipe-message>ripmime -i - -d ~/.mail_attachments/'
+
+macro index g0 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/boxes'<enter>
+macro index g1 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/gmail'<enter><change-folder>!<enter>
+macro index g2 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/pipi'<enter><change-folder>!<enter>'
+macro index g3 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/icloud'<enter><change-folder>!<enter>'
+
+# goobook to handle contacts
+set query_command="goobook query '%s'"
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+bind editor <Tab> complete-query

@@ -1,0 +1,52 @@
+[user]
+	name = MGC
+	email = chagel@gmail.com
+	signingkey = CE7B58CACC69FFB0
+[push]
+	default = simple
+[alias]
+  df = diff
+  dt = difftool
+  mt = mergetool
+  ci = commit -a -v
+  co = checkout
+  st = status
+  br = branch
+  lg = log --graph --pretty=format:'%Cred%h%Creset %Cblue%aN%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative 
+	tags = !"git for-each-ref \
+		--sort=taggerdate \
+		--format '%(tag)_,,,_%(taggerdate:raw)_,,,_%(taggername)_,,,_%(subject)' refs/tags \
+		| awk 'BEGIN { FS = \"_,,,_\"  } ; { t=strftime(\"%Y-%m-%d  %H:%M\",$2); printf \"%-20s %-18s %-25s %s\\n\", t, $1, $4, $3  }'"
+
+
+[diff]
+  tool = vimdiff
+[difftool "vimdiff"]
+  cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+[difftool]
+  prompt = false
+
+[merge]
+	tool = vimdiff
+	conflictstyle = diff3
+[mergetool "vimdiff"]
+	trustExitCode = true
+[mergetool]
+  prompt = false
+
+[core]
+	excludesfile = ~/.gitignore_global
+[init]
+	templatedir = ~/.git_template
+[https]
+[http]
+[socks]
+
+[commit]
+	gpgsign = true
+
+[branch]
+	autosetuprebase = always
+
+[submodule]
+  recurse = true

@@ -1,0 +1,148 @@
+set $mod Mod4
+
+set $up k
+set $down j
+set $left h
+set $right l
+
+#set $base00 #101218
+set $base00 #c5c8c6
+set $base01 #1f222d
+set $base02 #252936
+set $base03 #7780a1
+set $base04 #C0C5CE
+set $base05 #d1d4e0
+set $base06 #C9CCDB
+set $base07 #ffffff
+set $base08 #ee829f
+set $base09 #f99170
+set $base0A #ffefcc
+set $base0B #a5ffe1
+set $base0C #97e0ff
+#set $base0D #97bbf7
+set $base0D #1d1f21
+set $base0E #c0b7f9
+set $base0F #fcc09e
+
+#font pango:System San Francisco Display 9
+font pango:Hiragino Sans GB Light 9
+
+default_border pixel 1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec rofi -show run -theme onedark
+bindsym $mod+Shift+d exec rofi -show window -theme onedark
+
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Alt_R focus left
+bindsym $mod+Super_R focus down
+bindsym $mod+Print focus up
+
+# split orientations
+bindsym $mod+i split h
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toogle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the next scrathpad window or hide the focused one. Cycles through them
+# if there are multiple scatchpad windows.
+bindsym $mod+minus scratchpad show
+
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+
+# realod the configuration file
+bindsym $mod+Shift+c reload
+
+# retart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Log off?' -b 'Yes' 'i3-msg exit'"
+
+# lock
+bindsym $mod+Shift+l exec i3lock --color "$base0D"
+
+# Widow Colours
+client.focused $base0D $base0D $base00 $base01
+client.focused_inactive $base02 $base02 $base03 $base01
+client.unfocused $base01 $base01 $base03 $base01
+client.urgent $base02 $base08 $base07 $base08
+
+bar {
+  status_command i3status --config ~/.config/i3/status.conf
+  tray_output primary
+
+  colors {
+    separator $base03
+    background $base01
+    statusline $base05
+    focused_workspace $base0C $base0D $base00
+    active_workspace $base02 $base02 $base07
+    inactive_workspace $base01 $base01 $base03
+    urgent_workspace $base08 $base08 $base07
+  }
+
+}
+
+# screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20
+
+# set wallpaper
+exec --no-startup-id feh --bg-scale ~/Wallpapers/1.jpg
+
+# set alpha
+exec --no-startup-id compton -cCGf

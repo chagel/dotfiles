@@ -1,0 +1,22 @@
+text/html; w3m -T text/html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
+text/html; /usr/bin/firefox %s >/dev/null 2>&1 
+text/html; surf file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal
+
+# MS Word/Excel
+application/x-msexcel; libreoffice %s
+application/ms-exc; libreoffice %s
+application/excel; libreoffice %s
+application/msexcel; libreoffice %s
+application/vnd.ms-exc; libreoffice %s
+application/vnd.ms-excel; libreoffice %s
+application/msword; libreoffice %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; libreoffice %s
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; libreoffice %s
+
+# pdf
+application/pdf; zathura %s
+application/octet-stream; zathura %s
+
+application/pgp-keys; pgp -f < %s ; copiousoutput
+
+*/*; xdg-open "%s"

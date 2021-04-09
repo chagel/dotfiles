@@ -1,0 +1,256 @@
+set nocompatible              " required!
+filetype off                  " required!
+set hidden
+
+set rtp+=~/.vim/rtp/
+set rtp+=~/.fzf
+
+call plug#begin('~/.vim/plugged')
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'airblade/vim-gitgutter'
+Plug 'benmills/vimux'
+Plug 'burnettk/vim-angular'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dyng/ctrlsf.vim'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'edkolev/tmuxline.vim' 
+Plug 'ervandew/supertab'
+Plug 'itchyny/lightline.vim'
+Plug 'jceb/vim-orgmode'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'kchmck/vim-coffee-script'
+Plug 'leafgarland/typescript-vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'majutsushi/tagbar'
+Plug 'mattn/emmet-vim'
+Plug 'mcchrish/nnn.vim'
+Plug 'mileszs/ack.vim'
+Plug 'ngmy/vim-rubocop'
+Plug 'pechorin/any-jump.vim'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'reedes/vim-wordy'
+Plug 'rizzatti/dash.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'sheerun/vim-polyglot'
+Plug 'slim-template/vim-slim'
+"Plug 'spolu/dwm.vim'
+Plug 'suan/vim-instant-markdown'
+Plug 'taniarascia/new-moon.vim'
+Plug 't9md/vim-choosewin'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tmux-Plugins/vim-tmux-focus-events'
+Plug 'tomtom/tlib_vim'
+Plug 'tpope/gem-ctags'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
+Plug 'voldikss/vim-floaterm'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-notes'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
+call plug#end()
+
+set dir=~/.vimswap//,/var/tmp//,/tmp//,.
+filetype plugin indent on     " required!
+
+syntax on
+let g:dracula_colorterm = 0
+let g:dracula_italic = 0
+colorscheme dracula
+
+let g:lightline = { 
+      \ 'colorscheme': 'one', 
+      \ 'active': {
+      \    'right': [ [ 'lineinfo' ], [ 'gitbranch', 'percent' ] ]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'funs#LightLineFilename',
+      \   'gitbranch': 'FugitiveHead'
+      \ }
+      \ }
+
+
+"set foldmethod=syntax
+"set foldlevelstart=1
+"highlight Folded guibg=grey guifg=blue
+
+let mapleader=","
+let maplocalleader = "\\"
+set clipboard+=unnamedplus
+set number
+set relativenumber
+
+set tw=78
+set fo+=t,m
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set autoread
+set laststatus=2
+set colorcolumn=80
+set nocursorline
+"set cursorline
+"hi CursorLine term=bold cterm=bold ctermbg=240 
+"autocmd InsertLeave,WinEnter * set cursorline
+"autocmd InsertEnter,WinLeave * set nocursorline
+
+set winwidth=84
+set winheight=5
+set winminheight=5
+set winheight=999
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" search 
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+inoremap jj <Esc>
+
+" splits and panels
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+nnoremap <leader>0 :tablast<CR>
+map <leader>1 :tabn 1<cr>
+map <leader>2 :tabn 2<cr>
+map <leader>3 :tabn 3<cr>
+map <leader>4 :tabn 4<cr>
+map <leader>5 :tabn 5<cr>
+map <leader>6 :tabn 6<cr>
+map <leader>7 :tabn 7<cr>
+map <leader>8 :tabn 8<cr>
+map <leader>9 :tabn 9<cr>
+map <leader>h :noh<cr>
+map <leader>z :Goyo<cr>
+map <leader>g :Tagbar<cr>
+map <leader>p :bp<cr>
+"map <leader>n :bn<cr>
+"
+nnoremap <leader>n :NnnPicker '%:p:h'<CR>
+
+" rspec commands
+map <Leader>r :call RunCurrentSpecFile()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
+
+map <leader>f zfat<cr>
+map <leader>a za<cr>
+map <leader>s :w<cr>
+map <leader>q :q<cr>
+map <leader>e :NERDTreeTabsToggle<CR>
+map <leader>w :NERDTreeFind<CR>
+map <leader>v :tabedit ~/.vimrc<CR>
+map <S-F> :CtrlSF 
+
+" fzf commands
+map <C-F> :Ag<cr>
+map <C-P> :Files<cr>
+map <C-B> :Buffers<cr>
+map <C-M> :Windows<cr>
+map <leader>c :Commits<CR>
+map <leader>y :History/<CR>
+
+" esay align motions
+vmap <Enter> <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+nmap -  <Plug>(choosewin)
+
+au! User GoyoEnter nested call funs#goyo_enter()
+au! User GoyoLeave nested call funs#goyo_leave()
+
+au BufRead,BufNew *.rabl set filetype=ruby
+au filetype html,eruby imap <buffer><expr><tab> funs#zen_html_tab()
+au filetype python setlocal mp=python\ %
+au filetype ruby setlocal mp=ruby\ %
+au filetype mail setlocal formatoptions+=nawrtcp
+
+" customize split borders
+"hi VertSplit ctermbg=NONE guibg=NONE ctermfg='0x282a36'
+"highlight VertSplit cterm=NONE
+
+"set fillchars+=vert:\┊
+set fillchars+=vert:\ 
+
+let g:choosewin_overlay_enable = 1
+
+" NERDTree settings
+let g:nerdtree_tabs_open_on_gui_startup=0
+
+" Enable Flog
+let g:flog_enable=0
+
+" vim-notes doc folder
+let g:notes_directories = ["~/Dropbox/Sketch/Notes/2021"]
+
+" ack -> ag(the silver searcher)
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+" vimux panel height
+let g:VimuxHeight = "15"
+
+" Dispatch rspec
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+
+" Collect org files to show in agenda
+let g:org_agenda_files = ['~/Dropbox/Sketch/Orgs/*.org']
+
+" Scroll down supertab behavior
+let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:instant_markdown_autostart = 0
+
+" Goyo zen writing 
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+let g:deoplete#enable_at_startup = 1
+
+let g:table_mode_corner='|'
+
+"let g:nnn#layout = { 'window': { 'width': 0.6, 'height': 0.6, 'highlight': 'Debug' } }
+
+"let g:dwm_map_keys = 0
+"nmap <C-Space> <Plug>DWMFocus
+
+" performance tuning
+runtime macros/matchit.vim     " performanc issue?
+let loaded_matchparen=1 " Don't load matchit.vim (paren/bracket matching)
+set noshowmatch         " Don't match parentheses/brackets
+set lazyredraw          " Wait to redraw
+set scrolljump=8        " Scroll 8 lines at a time at bottom/top
+let html_no_rendering=1 " Don't render italic, bold, links in HTML
+

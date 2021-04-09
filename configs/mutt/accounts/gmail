@@ -1,0 +1,42 @@
+# gmail
+set from = "chagel@gmail.com"
+set realname = "MGC"
+
+# Credentails
+set smtp_url  = "smtp://chagel@gmail.com@smtp.gmail.com:587/"
+set smtp_pass = "`pass show email/chagel@gmail.com`"
+
+# Mailboxes
+set folder = "~/.mail/gmail"
+set mbox_type = Maildir
+set text_flowed = yes
+unset record
+set sig_on_top = yes
+set signature = "~/.config/mutt/signs/gmail"
+
+set header_cache = "~/.mutt/a1/cache/headers"
+set message_cachedir = "~/.mutt/a1/cache/bodies"
+set certificate_file = "~/.mutt/a1/certificates"
+
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+bind index,pager gi noop
+bind index,pager gy noop
+bind index,pager gs noop
+bind index,pager gp noop
+bind index,pager go noop
+bind index,pager gd noop
+bind index,pager gn noop
+
+unmailboxes *
+mailboxes "=INBOX" "=Sent" "=Drafts" "=Starred" "=Services" "=Private" "=Reading" "=Notes" "=Billing" "=Yifan"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager gs "<change-folder>=Starred<enter>" "Go to starred mail"
+macro index,pager go "<change-folder>=Sent<enter>" "Go to sent mail"
+macro index,pager gd "<change-folder>=Drafts<enter>" "Go to draft mail"
+macro index,pager gy "<change-folder>=Yifan<enter>" "Go to Yifan mail"
+macro index,pager gn "<change-folder>=Notes<enter>" "Go to notes mail"
+
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"

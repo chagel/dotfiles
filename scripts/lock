@@ -1,0 +1,6 @@
+#!/bin/sh
+
+LOCK_ROOT="$HOME/Dropbox/Pics/Wallpaper/locks/hd"
+IMG=$(ls $LOCK_ROOT/*.png | shuf -n1)
+#i3lock -i $IMG -b -e -f -t
+i3lock-m -i $IMG

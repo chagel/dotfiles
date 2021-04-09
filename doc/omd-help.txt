@@ -1,0 +1,95 @@
+Oh-My-Dotfiles                                                  *omd-help.txt* 
+
+
+       _                             _       _    __ _ _
+  ___ | |__    _ __ ___  _   _    __| | ___ | |_ / _(_) | ___  ___
+ / _ \| '_ \  | '_ ` _ \| | | |  / _` |/ _ \| __| |_| | |/ _ \/ __|
+| (_) | | | | | | | | | | |_| | | (_| | (_) | |_|  _| | |  __/\__ \
+ \___/|_| |_| |_| |_| |_|\__, |  \__,_|\___/ \__|_| |_|_|\___||___/
+                         |___/
+
+
+
+                             You know, dotfiles!
+
+=============================================================================
+
+CONTENTS                                                         *omd-contents*
+
+  1. about .........................................................|omd-about|
+  2. how to use ...................................................|omd-how-to|
+  3. my tips .....................................................|omd-my-tips|
+
+=============================================================================
+1. About                                                            *omd-about* 
+ 
+What matters 
+
+  - simplicity
+  - reusable & atomicity
+  - sharing & respect privacy
+
+Features should have
+
+  - change items easily 
+  - maintain codebase lightweight even after years
+  - apply different senarios(e.g., install, update or only refresh configs)
+  - support various os and working environments
+  - handle private data
+
+These bits and pieces of code are frequent to be used and changed. I use
+version control system(Git) to keep it on GitHub, and manage them with the
+basic build system of GNU Make.
+
+=============================================================================
+2. How to use                                                      *omd-how-to* 
+
+-----------------------------------------------------------------------------
+2.1 Structure 
+
+|---------|--------------------------------------------------------------|
+| Name    | Description                                                  |
+|---------|--------------------------------------------------------------|
+| dots    | Dot files will be linked to $HOME root, usually start with . |
+| configs | Files and folders will be linked to $XDG_CONFIG_HOME         |
+| scripts | Useful bash scripts and commands                             |  
+| aliases | Useful system, dev, tools and other aliases                  |
+|---------|--------------------------------------------------------------|
+
+-----------------------------------------------------------------------------
+2.2 Quick start
+
+Firstly, clone the project. >
+
+   git clone https://github.com/chagel/dotfiles.git
+<
+
+Then, choose the action you want to perform.
+
+When I setup a new development environment, I would initilize all aliases, 
+configs, and install all wanted packages. >
+
+   make all
+<
+
+When I setup a new EC2 node, I only want to setup my aliases. >
+   
+   make server
+
+Alternatively, run this in a modern way. >
+
+   curl -o- https://raw.githubusercontent.com/chagel/dotfiles/main/aliases/basic.sh | bash
+<
+
+When I need a refreshment on sunday moniring besides coffee, I would update my
+packages and see any new excitement. >
+
+   make update
+<
+
+=============================================================================
+3. My tips                                                        *omd-my-tips* 
+Refer to |omd-tips.txt|
+
+=============================================================================
+vim:tw=78:ts=2:ft=help:norl:

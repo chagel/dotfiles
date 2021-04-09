@@ -1,0 +1,1 @@
+fzf --ansi --preview 'cat {}' | xargs -d '\n' nvim

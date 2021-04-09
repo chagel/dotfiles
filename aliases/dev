@@ -1,0 +1,54 @@
+
+export GOPATH="$HOME/Develop/go"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/opt/sphinx-3.1.1/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.deno/bin:$PATH"
+
+# rbenv
+export RBENV_ROOT=$HOME/.rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# jenv
+#export JENV_ROOT=/usr/local/var/jenv
+if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+#export ID_FILE=~/.ssh/aws-pipi-1504.pem
+export ID_FILE=~/.ssh/ssh-pipi-2006.pem
+export ALI_ID_FILE=~/.ssh/aliyun-pipi-2003.pem
+
+# Temp fix for RMagick with imagemagick 6
+export PKG_CONFIG_PATH=/usr/lib/imagemagick6/pkgconfig
+
+alias be="bundle exec "
+alias beg="bundle exec guard"
+alias bek="bundle exec rake"
+alias bea="bundle exec rails"
+alias bed="bundle exec rake db:migrate"
+alias bet="RAILS_ENV=test bundle exec rake db:drop db:create db:migrate"
+alias bec="bundle exec rails c"
+alias ran="rails new $1 -m https://raw.githubusercontent.com/chagel/rails-template/master/template.rb"
+alias bes="bin/rails s -p3000"
+alias bes3="bin/rails s -p3000"
+alias bes4="bin/rails s -p4000"
+alias bes5="bin/rails s -p5000"
+alias bes6="bin/rails s -p6000"
+alias start_puma="scu-start puma-dev"
+
+alias vg="vim Gemfile"
+alias dpaste="curl -s -F 'content=<-' http://dpaste.com/api/v2/"
+alias ws="ruby -run -ehttpd . -p 8000"
+alias mgst="mgitstatus"
+alias uc="uncommitted"
+
+alias aws-ec2="aws ec2 describe-instances --filters Name=tag-key,Values=Name --query 'Reservations[].Instances[].[Placement.AvailabilityZone, State.Name, Tags[?Key==\`Name\`]|[0].Value, LaunchTime, InstanceId, InstanceType, PrivateIpAddress, PublicDnsName]' --output table"
+alias aws-users="aws iam list-users --output table"

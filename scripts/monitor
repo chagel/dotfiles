@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# This script does two things here
+# 1. Detect laptop and external monitors and choose the right outputs
+# 2. Draw wallpaper for outputs 
+
+LAPTOP="eDP-1"
+RIGHT_AVAILABLE=(DP-1 DP-2)
+LEFT_AVAILABLE=(DP-2-2 DP-1-2)
+LEFT=""
+RIGHT=""
+REPO="$HOME/.config/wallpaper/default"
+RANDR_CMD="xrandr"
+
+output_laptop() {
+  LID_CLOSED=$(cat /proc/acpi/button/lid/LID/state | grep "closed")
+  if [ ! -n "$LID_CLOSED" ]; then
+    echo "--output $LAPTOP --auto"
+  else
+    echo "--output $LAPTOP --off"
+  fi
+}
+
+connected() {
+  SCREEN=$1
+  screen_active=$(xrandr -q | grep "\*" -B2 | grep "^$SCREEN connected")
+  if [ -n "$screen_active" ]; then
+    echo $SCREEN
+  fi
+}
+
+monitor_connected() {
+  MONITOR=''
+  for output in $1
+  do
+    active=$(connected $output)
+    if [[ -n "$active" ]]; then
+      MONITOR=$output
+    fi
+  done
+  echo $MONITOR
+}
+
+output_left() { 
+  if [[ -n "$LEFT" ]]; then
+    echo "--output $LEFT --mode 3840x2160 --rate 60 --rotation normal --pos 0x700"
+  fi
+}
+
+output_right() {
+  if [[ -n "$RIGHT" ]]; then
+    echo "--output $RIGHT --mode 3840x2160 --rate 60 --rotation left --pos 3840x0"
+  fi
+}
+
+redraw_wallpaper() {
+  WALL_CMD="xwallpaper"
+  for screen in $1
+  do 
+    if [[ -n "$(connected $screen)" ]]; then
+      WALL_CMD="$WALL_CMD --output $screen --maximize $REPO/.wallpaper.$screen.png"
+    fi
+  done
+  #echo $WALL_CMD
+  exec $WALL_CMD
+}
+
+LEFT=$(monitor_connected "${LEFT_AVAILABLE[*]}")
+RIGHT=$(monitor_connected "${RIGHT_AVAILABLE[*]}")
+RANDR_CMD="$RANDR_CMD $(output_laptop) $(output_left) $(output_right)"
+#echo $RANDR_CMD
+exec $RANDR_CMD &
+
+MONITORS=($LAPTOP $LEFT $RIGHT)
+redraw_wallpaper "${MONITORS[*]}"

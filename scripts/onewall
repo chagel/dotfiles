@@ -1,0 +1,43 @@
+#!/bin/sh
+
+ONEWALL_ROOT="$HOME/.config/onewall"
+MY_COLLECTION_ID=85639348
+
+random() {
+  curl -s -H "Authorization: Client-ID $(pass keys/unsplash)" -H "Accept-Version: v1" "https://api.unsplash.com/photos/random?collections=2310706,1795354" -o $ONEWALL_ROOT/last 
+  CURRENT=$(date --utc +%Y%m%d_%H%M%SZ).png
+
+  curl -s $(cat $ONEWALL_ROOT/last | jq -r '(.urls.raw)') -o $ONEWALL_ROOT/repo/$CURRENT
+
+  echo $(cat $ONEWALL_ROOT/last | jq -r '(.id)') > $ONEWALL_ROOT/current_id
+  echo $CURRENT > $ONEWALL_ROOT/current_name
+}
+
+save() {
+  curl -s -d "photo_id=$(cat $ONEWALL_ROOT/current_id)&collection_id=$MY_COLLECTION_ID" -H "Authorization: Bearer $(pass keys/unsplash_token)" -H "Accept-Version: v1" -X POST https://api.unsplash.com/collections/$MY_COLLECTION_ID/add -o /dev/null
+}
+
+setwall() {
+  xwallpaper --maximize $ONEWALL_ROOT/repo/$(cat $ONEWALL_ROOT/current_name)
+}
+
+show() {
+  cat $ONEWALL_ROOT/last | jq | more
+}
+
+preview() {
+  feh $ONEWALL_ROOT/repo/$(cat $ONEWALL_ROOT/current_name)
+}
+
+all() {
+  random
+  preview
+}
+
+case "$1" in
+  a) all;;
+  w) setwall;;
+  s) save;;
+  *) preview;;
+esac
+

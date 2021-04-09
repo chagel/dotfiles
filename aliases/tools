@@ -1,0 +1,58 @@
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
+
+export NPATH="$HOME/Dropbox/Sketch/Notes/$(date +%Y)"
+
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUG='z:fzz;v:imgview;p:preview-tui;t:preview-tabbed;d:dragdrop;l:launch'
+export NNN_BMS='d:~/Downloads;s:~/Dropbox/Pics/Screenshots;p:~/Workspaces/pipi/'
+export NNN_COLORS="2136"
+export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
+export NNN_TRASH=1
+
+export GPG_TTY=$(tty)
+
+alias todo="vim ~/Dropbox/Sketch/Orgs/todo.org"
+alias def='sdcv -n -e -0 -c'
+
+alias note="vim -c 'edit note:$1'"
+alias notes="vim -c 'RecentNotes'"
+alias ns="ls -c $NPATH | egrep -i $1"
+
+alias b="bat"
+alias f="ranger"
+alias n="nnn -d -T t"
+alias ncp="cat ${NNN_SEL:-${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.selection} | tr '\0' '\n'"
+alias za="zathura" 
+
+alias a="gcalcli"
+alias aw="gcalcli calw"
+alias am="gcalcli calm"
+alias aa="gcalcli agenda"
+alias an="gcalcli --calendar='chagel@gmail.com' quick "
+
+alias tweet="$HOME/.rbenv/shims/t"
+alias t="task"
+alias tn="task add"
+alias tnt="task add due:eod"
+alias tt="task ls due.before:tomorrow"
+alias tw="task ls due.before:soww"
+alias tm="task long due.before:sonm"
+
+alias m="timew"
+alias ms="timew summary :month"
+alias mw="timew week"
+alias mm="timew month"
+
+alias screenmouse="find-cursor -r0 -l 1 -d 5 -s 30 -w 100 -c red"
+
+#export FZF_DEFAULT_COMMAND="fd . /"
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_ALT_C_COMMAND="fd -t d . /"
+
+alias ffo="vim $(fd -t f -a1 $1)"
+alias fdo="vim $(fd -t d -a1 $1)"
+
+alias mux="tmuxinator"
+alias vim="nvim"

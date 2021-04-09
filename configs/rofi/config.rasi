@@ -1,0 +1,5 @@
+configuration {
+	modi: "window,run,ssh,windowcd,drun,file-browser";
+	show-icons: true;
+	theme: "/home/mike/.config/rofi/dracula/config.rasi";
+}

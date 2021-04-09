@@ -1,0 +1,20 @@
+#!/bin/sh
+
+smenu() {
+  echo -e "$2" | dmenu -p "$1" -b -fn 'Terminus:size=20'
+}
+
+classic() {
+  PLACE=$(smenu "Screenshot saves to ->" "Clipboard\n Dropbox")
+  if [ $PLACE == "Clipboard" ]; then
+    maim -s | xclip -selection clipboard -t image/png
+  elif [ $PLACE == "Dropbox" ]; then
+    FILE=$HOME/Dropbox/Pics/Screenshots/$(date +%s).png
+    maim -s $FILE 
+    echo "$FILE" | xclip -selection clipboard
+  fi
+}
+
+#classic
+
+flameshot gui -p $HOME/Dropbox/Pics/Screenshots/
