@@ -17,6 +17,8 @@ configs/systemd/user/default.target.wants
 profile/
 password*
 
+themes/gtk/gtk-3.0/bookmarks
+
 dots/mbsyncrc
 configs/mutt/aliases
 configs/mutt/signs/*

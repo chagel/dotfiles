@@ -21,6 +21,13 @@ dotfile:
 	@for item in $(DOTS); do ln -vsf ${BASE}/dots/$$item ${HOME}/.$$item; done
 	@for item in $(CONFIGS); do ln -vsfn ${BASE}/configs/$$item ${HOME}/.config/$$item; done
 
+theme:
+	## config GTK and other themes
+	@ln -vsfn ${BASE}/themes/gtk/gtk-3.0 ${HOME}/.config/gtk-3.0
+	@ln -vsfn ${BASE}/themes/gtk/gtk-4.0 ${HOME}/.config/gtk-4.0
+	@ln -vsf ${BASE}/themes/gtk/gtkrc-2.0 ${HOME}/.gtkrc-2.0
+	@ln -vsf ${BASE}/themes/zsh/mgc.zsh-theme ${HOME}/.oh-my-zsh/themes/mgc.zsh-theme
+
 vim-config:
 	## config vim 
 	@ln -vsfn ${BASE}/vim ${HOME}/.vim
@@ -34,7 +41,6 @@ vim-update:
 zsh-config:
 	## config zsh 
 	@ln -vsf ${BASE}/zsh/zshrc ${HOME}/.zshrc
-	@ln -vsf ${BASE}/zsh/themes/mgc.zsh-theme ${HOME}/.oh-my-zsh/themes/mgc.zsh-theme
 
 zsh-update:
 	## update omz

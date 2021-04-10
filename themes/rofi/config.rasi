@@ -12,6 +12,7 @@
     selected-active-background: @active-background;
     separatorcolor: @active-background;
     bordercolor: #AAA;
+    hlcolor:#bc92f8;
 }
 
 #window {

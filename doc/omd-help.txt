@@ -52,8 +52,9 @@ basic build system of GNU Make.
 |---------|--------------------------------------------------------------|
 | dots    | Dot files will be linked to $HOME root, usually start with . |
 | configs | Files and folders will be linked to $XDG_CONFIG_HOME         |
-| scripts | Useful bash scripts and commands                             |  
+| scripts | Useful bash scripts and commands                             |
 | aliases | Useful system, dev, tools and other aliases                  |
+| themes  | Themes and color styles for GTK and other programs           |
 |---------|--------------------------------------------------------------|
 
 -----------------------------------------------------------------------------
