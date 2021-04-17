@@ -90,11 +90,4 @@ render_bar() {
   echo "$(pmusic) $(precord) $(ptimew)  $(ptask)  $(pmail)  $(pcal)  $(pbat)  $(pvol)  $(pwifi)  $(ptime)"
 }
 
-main() {
-  while true; do 
-    xsetroot -name "$(render_bar)"
-    sleep 1
-  done
-}
-
-main
+render_bar

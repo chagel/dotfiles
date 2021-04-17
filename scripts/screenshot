@@ -1,17 +1,13 @@
 #!/bin/sh
 
-smenu() {
-  echo -e "$2" | dmenu -p "$1" -b -fn 'Terminus:size=20'
-}
-
 classic() {
-  PLACE=$(smenu "Screenshot saves to ->" "Clipboard\n Dropbox")
+  PLACE=$(echo -e "Clipboard\n Dropbox" | dmenu -p "Screenshot saves to ->" -b -fn 'Terminus:size=20')
   if [ $PLACE == "Clipboard" ]; then
-    maim -s | xclip -selection clipboard -t image/png
+    grim -g "$(slurp)" - | wl-copy -t image/png
   elif [ $PLACE == "Dropbox" ]; then
     FILE=$HOME/Dropbox/Pics/Screenshots/$(date +%s).png
-    maim -s $FILE 
-    echo "$FILE" | xclip -selection clipboard
+    grim -g "$(slurp)" $FILE
+    echo "$FILE" | wl-copy
   fi
 }
 
