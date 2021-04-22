@@ -1,6 +1,7 @@
-text/html; w3m -T text/html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
-text/html; /usr/bin/firefox %s >/dev/null 2>&1 
+text/plain; vim %s
+
 text/html; surf file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal
+text/html; w3m -T text/html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
 
 # MS Word/Excel
 application/x-msexcel; libreoffice %s

@@ -18,7 +18,7 @@ basic:
 
 dotfile:
 	## make dotfile in home root folder
-	@for item in $(DOTS); do ln -vsf ${BASE}/dots/$$item ${HOME}/.$$item; done
+	@for item in $(DOTS); do ln -vsfn ${BASE}/dots/$$item ${HOME}/.$$item; done
 	@for item in $(CONFIGS); do ln -vsfn ${BASE}/configs/$$item ${HOME}/.config/$$item; done
 
 theme:

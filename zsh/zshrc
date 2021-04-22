@@ -65,6 +65,7 @@ DISABLE_AUTO_TITLE="true"
 
 export NVM_AUTO_USE=true
 plugins=(
+  archlinux
   emoji
   fd
   fzf

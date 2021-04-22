@@ -52,3 +52,7 @@ alias uc="uncommitted"
 
 alias aws-ec2="aws ec2 describe-instances --filters Name=tag-key,Values=Name --query 'Reservations[].Instances[].[Placement.AvailabilityZone, State.Name, Tags[?Key==\`Name\`]|[0].Value, LaunchTime, InstanceId, InstanceType, PrivateIpAddress, PublicDnsName]' --output table"
 alias aws-users="aws iam list-users --output table"
+
+alias cabrn="git checkout -b z_features/$(date '+%Y%m')_$($1)"
+alias cabrf="git checkout -b z_hotfix/$(date '+%Y%m')_$1"
+alias capr="hub pull-request -b x_releases/$(TZ=Asia/Shanghai date '+%Y%m%d') -p"

@@ -60,7 +60,10 @@ windows:
       panes:
         - htop
         - journalctl -f
-  - music: ncspot 
+  - music: 
+      panes: 
+        - ncspot 
+        - lyrics
   - p1:
       root: ~/Workspaces
       panes: 

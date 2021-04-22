@@ -49,6 +49,8 @@ bind pager gg top
 bind pager G bottom
 bind pager o exit
 bind attach <return> view-mailcap
+bind index,pager V  noop
+macro index,pager V "<view-attachments><search>html<enter><view-mailcap><exit>"
 macro index,pager H "<pipe-message>htmail-decode<return>" "render html mail using htmail-view"
 
 # Sidebar mappings

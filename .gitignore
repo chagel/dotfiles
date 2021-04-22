@@ -6,6 +6,9 @@ tmp/
 .netrwhist
 .VimballRecord
 .vim_blog
+cache/
+certificates/
+cookies.txt
 VimballRecord
 vim/plugged
 vim/bundle
