@@ -1,0 +1,72 @@
+Oh-My-Dotfiles                                                 
+
+=============================================================================
+VIM                                                                 *omd-vim* 
+
+
+Kudo to VIM Table Mode.
+
+<AK>: ,
+
+|------------------------------------|------------|--------------------------|
+| Action                             | Category   |                  Trigger |
+|------------------------------------|------------|-------------------------:|
+| Comment/uncomment                  | commenter  |                  ,cc ,cu |
+| Previous conflict                  | diff       |                       [c |
+| Next conflict                      | diff       |                       ]c |
+| Obtain right changes               | diff       |                       do |
+| Push changes to right              | diff       |                       dp |
+| Indent selection                   | edit       |                        = |
+| Delete after the cursor and change | edit       |                        C |
+| Delete the whole line and change   | edit       |                        S |
+| Delete cursor and change           | edit       |                        s |
+| Replace cursor                     | edit       |                      r/R |
+| Repeat                             | edit       |                  @: / @@ |
+| Format all paragphs                | edit       |                gqg / gqG |
+| Regex find and replace             | edit       |            :%s/foo/bar/g |
+| Format text in columns             | edit       |              :!column -t |
+| Sort and reverse 2nd column        | edit       |             :!sort -k2nr |
+| Current line to bottom             | focus      |                       zb |
+| Current line to top                | focus      |                       zt |
+| Close all other panes              | focus      |                   ctrl+o |
+| Current line to middle             | focus      |                  z. / zz |
+| Swap windows                       | focus      | ctrl-w ctrl-r / ctrl-w x |
+| Fold first or all levels           | fold       |                    zm zM |
+| Unfold first or all levels         | fold       |                    zr zR |
+| Jump to matched closeure           | nav        |                        % |
+| Jump to last edited                | nav        |                       g, |
+| Jump to last edit pos              | nav        |                       gi |
+| Move by letters or words           | nav        |              Space, w, b |
+| Mark and go                        | nav        |              m[a-z] / 'a |
+| New file                           | netrw      |                        % |
+| Delete                             | netrw      |                        D |
+| Show all files                     | netrw      |                        I |
+| Rename                             | netrw      |                        R |
+| New dir                            | netrw      |                        d |
+| Jump to other files                | rails      |                       :A |
+| Jump to associated files           | rails      |                       :R |
+| Jump to file                       | rails      |                       gf |
+| Jump to class or method            | ruby       |             [m / ]m / [[ |
+| Operate on block                   | ruby       |          (v/c/d/y)(i/a)m |
+| Resize vsplit width                | split      |              ctrl+w 50 > |
+| Navigate splits                    | split      |           ctrl + h/j/k/l |
+| Switch splits                      | split      |           ctrl+w H/J/K/L |
+| Join lines                         | splitjoin  |                       gJ |
+| Split lines                        | splitjoin  |                       gS |
+| Toggle table mode                  | table-mode |                  <AK>+tm |
+| Reformat table                     | table-mode |                  <AK>+tt |
+| Sort by table column               | table-mode |                  <AK>+ts |
+|------------------------------------|------------|--------------------------|
+
+Profiling VIM performance  
+>
+   :profile start profile.log
+   :profile func *
+   :profile file *
+   "At this point do slow actions
+   :profile pause
+   :noautocmd qall!
+<
+
+=============================================================================
+vim:tw=78:ts=2:ft=help:norl:

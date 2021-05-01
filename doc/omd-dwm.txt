@@ -1,0 +1,25 @@
+Oh-My-Dotfiles                                                  
+
+=============================================================================
+DWM                                                                 *omd-dwm* 
+
+I use suckless [DWM](https://dwm.suckless.org/) as my tiling windows manager.
+
+The reasons I prefer using DWM.
+
+- Lightweight
+- Fast
+- Customizable
+
+Suckless follows the core of Unix's philosophy - Do one thing and do it well.
+As I appreciate much of the Arch Linux's principle - Keep it simple, stupid. 
+
+
+-----------------------------------------------------------------------------
+
+AK: <Super>
+
+
+
+=============================================================================
+vim:tw=78:ts=8:ft=help:norl:

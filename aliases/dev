@@ -1,5 +1,7 @@
 
 export GOPATH="$HOME/Develop/go"
+export PYTHONPATH="${PYTHONPATH}:$HOME/Dotfiles/themes/qute/"
+
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="/opt/sphinx-3.1.1/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
@@ -21,13 +23,14 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+export NODE_PATH=$NODE_PATH:$(npm root -g)
 
 #export ID_FILE=~/.ssh/aws-pipi-1504.pem
 export ID_FILE=~/.ssh/ssh-pipi-2006.pem
 export ALI_ID_FILE=~/.ssh/aliyun-pipi-2003.pem
 
 # Temp fix for RMagick with imagemagick 6
-export PKG_CONFIG_PATH=/usr/lib/imagemagick6/pkgconfig
+#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/imagemagick6/pkgconfig
 
 alias be="bundle exec "
 alias beg="bundle exec guard"
@@ -53,6 +56,6 @@ alias uc="uncommitted"
 alias aws-ec2="aws ec2 describe-instances --filters Name=tag-key,Values=Name --query 'Reservations[].Instances[].[Placement.AvailabilityZone, State.Name, Tags[?Key==\`Name\`]|[0].Value, LaunchTime, InstanceId, InstanceType, PrivateIpAddress, PublicDnsName]' --output table"
 alias aws-users="aws iam list-users --output table"
 
-alias cabrn="git checkout -b z_features/$(date '+%Y%m')_$($1)"
-alias cabrf="git checkout -b z_hotfix/$(date '+%Y%m')_$1"
+alias cabrn='cf(){ git checkout -b z_features/$(date "+%Y%m")_"$1"; unset -f cf; }; cf'
+alias cabrf='cf(){ git checkout -b z_hotfix/$(date "+%Y%m")_"$1"; unset -f cf; }; cf'
 alias capr="hub pull-request -b x_releases/$(TZ=Asia/Shanghai date '+%Y%m%d') -p"

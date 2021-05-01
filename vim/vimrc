@@ -97,7 +97,7 @@ let g:lightline = {
 "highlight Folded guibg=grey guifg=blue
 
 let mapleader=","
-let maplocalleader = "\\"
+let maplocalleader = ",,"
 set clipboard+=unnamedplus
 set number
 set relativenumber

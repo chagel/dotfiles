@@ -1,0 +1,31 @@
+Oh-My-Dotfiles                                                  
+
+=============================================================================
+TMUX                                                               *omd-tmux* 
+
+
+<AK>: `
+
+|----------------------------------|------------------------|
+| Action                           |                Trigger |
+|----------------------------------|-----------------------:|
+| Adjust pane size                 |         <AK> + <Arrow> |
+| Delete current pane              |               <AK> + x |
+| New horizontal pane              |               <AK> + - |
+| New vertical pane                |              <AK> + \| |
+| New window                       |               <AK> + c |
+| Rename window                    |               <AK> + , |
+| Focus current pane               |               <AK> + z |
+| Apply next layout                |           <AK> + Space |
+| Switch pane layout               | <AK> + <option> + 1..5 |
+| help                             |               <AK> + ? |
+| Copy mode                        |               <AK> + [ |
+| Move pane to new window          |               <AK> + ! |
+| Display pane number              |               <AK> + q |
+| Swap right/left panes            |             <AK> + {/} |
+| Move to the left by one position |      swap-window -t -1 |
+|----------------------------------|------------------------|
+
+
+=============================================================================
+vim:tw=78:ts=8:ft=help:norl:

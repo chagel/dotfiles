@@ -12,19 +12,19 @@
 # key stroke smooth
 xset r rate 300 50
 
-# magic trackpad enables tapping/acceleration
-TOUCHPAD_ID=$(xinput list | grep Magic | grep -oh "id=[0-9]*" | tr '=' ' '| awk '{print $2}')
-if  [[ -n $TOUCHPAD_ID ]]; then
-  TAPPING_PROP_ID=$(xinput list-props $TOUCHPAD_ID | grep 'libinput Tapping Enabled (' | tr '()' ' ' | awk '{print $4}')
-  if [[ -n $TAPPING_PROP_ID ]]; then
-    xinput set-prop $TOUCHPAD_ID $TAPPING_PROP_ID 1 
-  fi
+## magic trackpad enables tapping/acceleration
+#TOUCHPAD_ID=$(xinput list | grep Magic | grep -oh "id=[0-9]*" | tr '=' ' '| awk '{print $2}')
+#if  [[ -n $TOUCHPAD_ID ]]; then
+  #TAPPING_PROP_ID=$(xinput list-props $TOUCHPAD_ID | grep 'libinput Tapping Enabled (' | tr '()' ' ' | awk '{print $4}')
+  #if [[ -n $TAPPING_PROP_ID ]]; then
+    #xinput set-prop $TOUCHPAD_ID $TAPPING_PROP_ID 1 
+  #fi
 
-  ACCEL_PROP_ID=$(xinput list-props $TOUCHPAD_ID | grep 'libinput Accel Speed (' | tr '()' ' ' | awk '{print $4}')
-  if [[ -n $ACCEL_PROP_ID ]]; then
-    xinput set-prop $TOUCHPAD_ID $ACCEL_PROP_ID 1 
-  fi
-fi 
+  #ACCEL_PROP_ID=$(xinput list-props $TOUCHPAD_ID | grep 'libinput Accel Speed (' | tr '()' ' ' | awk '{print $4}')
+  #if [[ -n $ACCEL_PROP_ID ]]; then
+    #xinput set-prop $TOUCHPAD_ID $ACCEL_PROP_ID 1 
+  #fi
+#fi 
 
-# restart to make multiple gestures work after reboot/resume
+## restart to make multiple gestures work after reboot/resume
 systemctl --user restart libinput-gestures.service

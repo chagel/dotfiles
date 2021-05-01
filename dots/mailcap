@@ -1,5 +1,6 @@
 text/plain; vim %s
 
+text/html; qutebrowser file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal
 text/html; surf file://%s; test=test -n "$DISPLAY"; nametemplate=%s.html; needsterminal
 text/html; w3m -T text/html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
 

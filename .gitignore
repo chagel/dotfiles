@@ -2,6 +2,7 @@
 *.swp
 tags
 tmp/
+__pycache__/
 .DS_Store
 .netrwhist
 .VimballRecord
@@ -16,6 +17,7 @@ tmux/plugins
 
 configs/systemd/user/timers.target.wants
 configs/systemd/user/default.target.wants
+configs/systemd/user/graphical-session.target.wants
 
 profile/
 password*
@@ -32,3 +34,7 @@ configs/tmuxinator/*
 !configs/tmuxinator/mgc.yml
 
 configs/wtf/config.yml
+
+quickmarks
+QtProject.conf
+configs/qutebrowser/bookmarks/urls
