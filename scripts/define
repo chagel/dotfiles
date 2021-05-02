@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ ! -z "$@" ]
+then
+  sdcv -n -e -0 -j $@ | jq -r ".[0].definition"
+else
+  cat /usr/share/dict/words
+fi

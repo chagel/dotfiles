@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ ! -z "$@" ]
+then
+  trans $@ :zh -indent 0 -no-ansi -speak
+else
+  cat /usr/share/dict/words
+fi
