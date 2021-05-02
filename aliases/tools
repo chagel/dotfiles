@@ -2,8 +2,6 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 
-export NPATH="$HOME/Dropbox/Sketch/Notes/$(date +%Y)"
-
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_PLUG='z:fzz;v:imgview;p:preview-tui;t:preview-tabbed;d:dragdrop;l:launch'
 export NNN_BMS='d:~/Downloads;s:~/Dropbox/Pics/Screenshots;a:~/.mail_attachments'
@@ -13,18 +11,18 @@ export NNN_TRASH=1
 
 export GPG_TTY=$(tty)
 
-alias todo="vim ~/Dropbox/Sketch/Orgs/todo.org"
-alias def='sdcv -n -e -0 -c'
+export NPATH="$HOME/Dropbox/Sketch/Notes/$(date +%Y)"
 
 alias note="vim -c 'edit note:$1'"
 alias notes="vim -c 'RecentNotes'"
 alias ns="ls -c $NPATH | egrep -i $1"
 
 alias b="bat"
-alias f="ranger"
+alias f="feh"
+alias h="history"
+alias v="zathura" 
 alias n="nnn -d -T t"
 alias ncp="cat ${NNN_SEL:-${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.selection} | tr '\0' '\n'"
-alias za="zathura" 
 
 alias a="gcalcli"
 alias aw="gcalcli calw"
