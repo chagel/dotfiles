@@ -38,3 +38,4 @@ configs/wtf/config.yml
 quickmarks
 QtProject.conf
 configs/qutebrowser/bookmarks/urls
+configs/qutebrowser/autoconfig.yml

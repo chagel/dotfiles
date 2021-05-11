@@ -16,8 +16,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # jenv
-#export JENV_ROOT=/usr/local/var/jenv
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
+# export JENV_ROOT=/usr/local/var/jenv
+# if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # nvm
 export NVM_DIR="$HOME/.nvm"

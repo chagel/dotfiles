@@ -39,9 +39,12 @@ alias tw="task ls due.before:soww"
 alias tm="task long due.before:sonm"
 
 alias m="timew"
-alias ms="timew summary :month"
 alias mw="timew week"
 alias mm="timew month"
+alias msm="timew summary :month"
+alias mslm="timew summary :lastmonth"
+alias mxm="timew export :month | ~/.timewarrior/extensions/to-csv"
+alias mxlm="timew export :lastmonth | ~/.timewarrior/extensions/to-csv"
 
 alias screenmouse="find-cursor -r0 -l 1 -d 5 -s 30 -w 100 -c red"
 

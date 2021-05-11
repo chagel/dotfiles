@@ -23,6 +23,8 @@ c.fonts.default_size = "14px"
 c.colors.webpage.preferred_color_scheme = 'dark'
 # c.colors.webpage.darkmode.enabled = True
 
+c.downloads.location.directory = '~/Downloads/'
+
 config.bind('X', 'undo')
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
@@ -30,7 +32,8 @@ config.bind('j', 'scroll down ;; scroll down')
 config.bind('k', 'scroll up ;; scroll up')
 config.bind('x', 'tab-close')
 
-config.bind('<Ctrl-b>', 'config-cycle statusbar.show always never;; config-cycle tabs.show always never')
+config.bind('<Ctrl-b>', 'config-cycle statusbar.show always never')
+config.bind('<Ctrl-h>', 'config-cycle tabs.show always never')
 
 config.bind('<Ctrl-.>', 'spawn --userscript qute_1pass.py fill_credentials --cache-session')
 config.bind('<Ctrl-,>', 'spawn --userscript qute_1pass.py fill_username --cache-session')
@@ -38,3 +41,4 @@ config.bind('<Ctrl-/>', 'spawn --userscript qute_1pass.py fill_password --cache-
 config.bind('<Ctrl-?>', 'spawn --userscript qute_1pass.py fill_totp --cache-session')
 
 config.bind('<Ctrl-r>', 'spawn --userscript readability-js')
+config.bind('<Ctrl-d>', 'spawn --userscript pinboard.sh')
