@@ -83,11 +83,6 @@ Control+Shift+Alt + w
 m:0x40 + c:54
 Mod4 + c
 
-# browser
-"/usr/local/bin/qute"
-m:0x0 + c:95
-F11
-
 # toggle mute 
 "/usr/bin/amixer set Master toggle"
 m:0xd + c:19

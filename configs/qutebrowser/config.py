@@ -42,3 +42,5 @@ config.bind('<Ctrl-?>', 'spawn --userscript qute_1pass.py fill_totp --cache-sess
 
 config.bind('<Ctrl-r>', 'spawn --userscript readability-js')
 config.bind('<Ctrl-d>', 'spawn --userscript pinboard.sh')
+config.bind('<Ctrl-o>', 'spawn --userscript translate.sh')
+

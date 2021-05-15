@@ -2,13 +2,13 @@
 #
 # ANY PLACE AS A WALLPAPER
 #
-# dependencies:
+## Dependencies:
 # [xdpyinfo]
 # [feh]
 # [jq]      https://stedolan.github.io/jq
 # [paferes] https://github.com/sindresorhus/pageres-cli
 #
-# services:
+## Services:
 # [ipstack] https://ipstack.com
 # [positionstack] https://positionstack.com
 # [mapbox]  http://mapbox.com
@@ -16,7 +16,7 @@
 REPO="$HOME/.config/wallpaper"
 IS_TOKEN=$(pass keys/ipstack)
 PS_TOKEN=$(pass keys/positionstack)
-PLACE="me"
+PLACE=""
 WS_PID=""
 
 ip() {
@@ -59,26 +59,62 @@ capture() {
 }
 
 relink() {
-  latest=$(ls *.png | grep -v current | sort -V | tail -n 1)
-  ln -fs $latest current.png
+  file=$1
+  if [[ -z "$file" ]]; then
+    file=$(ls *.png | grep -v current | sort -V | tail -n 1)
+  fi
+  ln -fs $file current.png
 }
 
 setwall() {
   feh --bg-tile current.png
 }
 
-PLACE=$1
+list() {
+  ls *-*.png
+}
 
-if [[ -n "$PLACE" ]]; then
-  gps=$(coords_from_place $PLACE)
-else
-  gps=$(coords_from_ip $(ip))
-fi
+query() {
+  find . -name "*$1*.png" | tail -n 1
+}
 
-cd $REPO && start_ws
+render_and_capture() {
+  PLACE=$1
 
-capture $(map_url $gps) $(res)
-relink 
-setwall
+  if [[ -n "$PLACE" ]]; then
+    gps=$(coords_from_place $PLACE)
+  else
+    gps=$(coords_from_ip $(ip))
+  fi
 
-kill $WS_PID 
+  start_ws
+  capture $(map_url $gps) $(res)
+  relink 
+  setwall
+
+  kill $WS_PID 
+}
+
+main() {
+  if [[ -z "$1" ]]; then
+    relink
+    setwall
+  else
+    PLACE=$(query $1)
+
+    if [[ -n "$PLACE" ]]; then
+      relink $PLACE
+      setwall
+    else
+      render_and_capture $1
+    fi
+  fi
+}
+
+cd $REPO
+case "$1" in 
+  list) list;;
+  set) main $2;;
+  *) main;;
+esac
+
