@@ -15,6 +15,7 @@ c.url.start_pages = ['https://web.tabliss.io']
 c.url.default_page = "https://web.tabliss.io"
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}', 
                        'w': 'https://en.wikipedia.org/wiki/{}', 
+                       'd': 'https://devhints.io/{}', 
                        'a': 'https://wiki.archlinux.org/index.php/{}'}
 c.window.hide_decoration = True
 c.fonts.default_family = "Cantarell"

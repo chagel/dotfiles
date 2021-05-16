@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # ANY PLACE AS A WALLPAPER
 #
@@ -14,26 +14,26 @@
 # [mapbox]  http://mapbox.com
 
 REPO="$HOME/.config/wallpaper"
-IS_TOKEN=$(pass keys/ipstack)
-PS_TOKEN=$(pass keys/positionstack)
 PLACE=""
 WS_PID=""
 
 ip() {
-  echo $(curl --silent https://ifconfig.me)
+  curl --silent https://ifconfig.me
 }
 
 coords_from_place() {
+  PS_TOKEN=$(pass keys/positionstack)
   gps=$(curl --silent -G --data-urlencode "access_key=$PS_TOKEN" --data-urlencode "query=$1" http://api.positionstack.com/v1/forward) 
-  lat=$(echo $gps | jq -r ".data[0].latitude")
-  lng=$(echo $gps | jq -r ".data[0].longitude")
+  lat=$(echo "$gps" | jq -r ".data[0].latitude")
+  lng=$(echo "$gps" | jq -r ".data[0].longitude")
   echo "lat=$lat&lng=$lng"
 }
 
 coords_from_ip() {
-  gps=$(curl --silent http://api.ipstack.com/$1?access_key=$IS_TOKEN&format=json) 
-  lat=$(echo $gps| jq -r '.latitude')
-  lng=$(echo $gps| jq -r '.longitude')
+  IS_TOKEN=$(pass keys/ipstack)
+  gps=$(curl --silent "http://api.ipstack.com/$1?access_key=$IS_TOKEN&format=json") 
+  lat=$(echo "$gps"| jq -r '.latitude')
+  lng=$(echo "$gps"| jq -r '.longitude')
   echo "lat=$lat&lng=$lng"
 }
 
@@ -45,9 +45,9 @@ start_ws() {
 map_url() {
   style="dark-v8" #light, dark, streets-v10, outdoors, satellite
   token="$(pass keys/mapbox_token)"
-  zoom=12
-  url="http://localhost:8000/map.html?$1&token=$token&zoom=$zoom&style=$style"
-  echo $url
+  zoom=13
+  url="http://localhost:8000/.map.html?$1&token=$token&zoom=$zoom&style=$style"
+  echo "$url"
 }
 
 res() {
@@ -55,15 +55,17 @@ res() {
 }
 
 capture() {
-  pageres $1 $2 --filename="$(date +%s000)-$PLACE" --overwrite --d=10 --hide='.mapboxgl-ctrl-attrib' > /dev/null
+  pageres "$1" "$2" --filename="$(date +%s000)-$PLACE" --overwrite --d=10 --hide='.mapboxgl-ctrl-attrib' > /dev/null
 }
 
 relink() {
   file=$1
   if [[ -z "$file" ]]; then
-    file=$(ls *.png | grep -v current | sort -V | tail -n 1)
+    file="default/default-$(res).png"
+  else
+    file=$(query "$1")
   fi
-  ln -fs $file current.png
+  ln -fs "$file" current.png
 }
 
 setwall() {
@@ -71,7 +73,7 @@ setwall() {
 }
 
 list() {
-  ls *-*.png
+  ls -- *-*.png
 }
 
 query() {
@@ -81,40 +83,44 @@ query() {
 render_and_capture() {
   PLACE=$1
 
-  if [[ -n "$PLACE" ]]; then
-    gps=$(coords_from_place $PLACE)
+  if [[ "$PLACE" == "local" ]]; then
+    gps=$(coords_from_ip "$(ip)")
   else
-    gps=$(coords_from_ip $(ip))
+    EXISTING=$(query "$PLACE")
+
+    # set cached city wallpaper if found
+    if [[ -n "$EXISTING" ]]; then
+      relink "$PLACE"
+      setwall
+      exit 1
+    else
+      gps=$(coords_from_place "$PLACE")
+    fi
   fi
 
   start_ws
-  capture $(map_url $gps) $(res)
-  relink 
+  capture $(map_url "$gps") $(res)
+  relink "$PLACE"
   setwall
 
   kill $WS_PID 
 }
 
 main() {
+  # set default wallpaper if no city/pos specified
   if [[ -z "$1" ]]; then
     relink
     setwall
   else
-    PLACE=$(query $1)
-
-    if [[ -n "$PLACE" ]]; then
-      relink $PLACE
-      setwall
-    else
-      render_and_capture $1
-    fi
+    render_and_capture "$1"
   fi
 }
 
-cd $REPO
+cd "$REPO" || exit
+
 case "$1" in 
   list) list;;
-  set) main $2;;
+  set) main "$2";;
   *) main;;
 esac
 

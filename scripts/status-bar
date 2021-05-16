@@ -79,8 +79,15 @@ pmusic() {
   fi
 }
 
+precord() {
+  STATE=$(cast state)
+  if [[ "$STATE" == "1" ]]; then
+    echo -e "\uf28d REC"
+  fi
+}
+
 render_bar() {
-  echo "$(pmusic) $(ptimew)  $(ptask)  $(pmail)  $(pcal)  $(pbat)  $(pvol)  $(pwifi)  $(ptime)"
+  echo "$(pmusic) $(precord) $(ptimew)  $(ptask)  $(pmail)  $(pcal)  $(pbat)  $(pvol)  $(pwifi)  $(ptime)"
 }
 
 main() {

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 RECORD_FOLDER="$HOME/Documents/Records"
 CASTPID_FILE="/tmp/castpid"
@@ -6,16 +6,16 @@ webcam() {
   pkill -f '/dev/video' && mpv --demuxer-lavf-format=video4linux2 --demuxer-lavf-o-set=input_format=mjpeg av://v4l2:/dev/video2 > /dev/null 2>&1 &
 }
 
-capture() {
-  /usr/bin/screencast -S -W -I /dev/video2 -P bottomright "$RECORD_FOLDER/screencast-$(date '+%Y%m%d-%H%M-%S').mp4"
+grab() {
+  /usr/bin/screencast -S -W "$RECORD_FOLDER/screencast-$(date '+%Y%m%d-%H%M-%S').mp4"
 }
 
-capture_full() { 
+capture() { 
 	ffmpeg -y \
 	-f x11grab \
 	-framerate 60 \
-	-s "3840x2160" \
-	-i "$DISPLAY" \
+	-s "2560x1440" \
+	-i "$DISPLAY+0,700" \
 	-f alsa -i default \
 	-r 30 \
  	-c:v h264 -crf 0 -preset ultrafast -c:a aac \
@@ -33,32 +33,54 @@ record() {
   -c:v libx264 \
   -preset ultrafast \
   -c:a aac \
-  $RECORD_FOLDER/cam_$(date '+%Y%m%d-%H%M-%S').mp4 > /dev/null 2>&1 &
+  "$RECORD_FOLDER/cam_$(date '+%Y%m%d-%H%M-%S').mp4" > /dev/null 2>&1 &
   echo $! > $CASTPID_FILE
   notify-send "Camcast is starting..."
 }
 
 killcasting() {
-  PID=$(cat $CASTPID_FILE)
-  kill -15 $PID
-  rm $CASTPID_FILE
-  notify-send "Casting is stopped."
+  if [[ -e $CASTPID_FILE ]]; then
+    PID=$(cat $CASTPID_FILE)
+    kill -15 "$PID"
+    rm $CASTPID_FILE
+    notify-send "Casting is stopped."
+  fi
 }
 
 openrecord() {
-  cd $RECORD_FOLDER && cvlc $(ls -t $1* | head -n1) 
+  cd "$RECORD_FOLDER" && mpv $(ls -t "$1"* | head -n1) 
 }
 
 stream_dslr() {
-  gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -r 25 -s 1080x720 -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video20
+  gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -r 25 -s 1080x720 -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video20 > /dev/null 2>&1 &
+	echo $! > $CASTPID_FILE
+  notify-send "DSLR casting is starting..."
+  sleep 5 && mpv av://v4l2:/dev/video20 --profile=low-latency --untimed
+}
+
+sync_audio() {
+  base=$(basename "$1")
+  ext="${base##*.}"
+  base="${base%.*}"
+
+  ffmpeg -i "$1" -itsoffset 0.350 -i "$1" -c:v h264 -c:a aac -map 0:0 -map 1:1 "$base"_synced."$ext" 
+}
+
+casting_state() {
+  STATE=0
+  [ -e $CASTPID_FILE ] && STATE=1
+  pgrep -x ffmpeg\|gphoto2 >/dev/null && STATE=1
+  echo "$STATE"
 }
 
 case "$1" in
-  show) webcam;;
-	cam) record;;
-	screen) capture;;
-	stop) killcasting;;
-  open) openrecord $2;;
-  stream) stream_dslr;;
-	*) webcam;;
+  webcam) webcam;;
+  dslr) stream_dslr;;
+  record) record;;
+  screen) capture;;
+  open) openrecord "$2";;
+  sync) sync_audio "$2";;
+  stop) killcasting;;
+  state) casting_state;;
+  *) echo "Example: cast webcam|dslr|record|screen|grab|open|sync|stop";;
 esac

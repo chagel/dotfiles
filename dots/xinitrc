@@ -22,6 +22,7 @@ sh $SCRIPTS/status-bar &
 
 # adjust monitors and wallpapers
 monitor
+wallpaper
 
 # dual monitors recover after suspend
 # https://bugs.launchpad.net/ubuntu/+source/kscreen/+bug/1573345
