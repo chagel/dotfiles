@@ -6,9 +6,9 @@ set rtp+=~/.vim/rtp/
 set rtp+=~/.fzf
 
 call plug#begin('~/.vim/plugged')
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'spolu/dwm.vim'
 Plug 'airblade/vim-gitgutter'
+Plug 'andrewradev/splitjoin.vim'
 Plug 'benmills/vimux'
 Plug 'burnettk/vim-angular'
 Plug 'christoomey/vim-tmux-navigator'
@@ -30,6 +30,7 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'leafgarland/typescript-vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
+Plug 'marcweber/vim-addon-mw-utils'
 Plug 'mattn/emmet-vim'
 Plug 'mcchrish/nnn.vim'
 Plug 'mileszs/ack.vim'
@@ -44,10 +45,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
 Plug 'slim-template/vim-slim'
-"Plug 'spolu/dwm.vim'
 Plug 'suan/vim-instant-markdown'
-Plug 'taniarascia/new-moon.vim'
 Plug 't9md/vim-choosewin'
+Plug 'taniarascia/new-moon.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'thoughtbot/vim-rspec'
 Plug 'tmux-Plugins/vim-tmux-focus-events'
@@ -76,6 +76,7 @@ set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 filetype plugin indent on     " required!
 
 syntax on
+
 let g:dracula_colorterm = 0
 let g:dracula_italic = 0
 colorscheme dracula
