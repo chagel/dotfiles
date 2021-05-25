@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# ANY PLACE AS A WALLPAPER
+# MAP AS A WALLPAPER
 #
 ## Dependencies:
 # [xdpyinfo]
@@ -45,9 +45,9 @@ start_ws() {
 map_url() {
   style="dark-v8" #light, dark, streets-v10, outdoors, satellite
   token="$(pass keys/mapbox_token)"
-  zoom=13
-  url="http://localhost:8000/.map.html?$1&token=$token&zoom=$zoom&style=$style"
-  echo "$url"
+  zoom=$2
+  [[ -z "$zoom" ]] && zoom=12
+  echo "http://localhost:8000/.map.html?$1&token=$token&zoom=$zoom&style=$style"
 }
 
 res() {
@@ -82,6 +82,7 @@ query() {
 
 render_and_capture() {
   PLACE=$1
+  ZOOM=$2
 
   if [[ "$PLACE" == "local" ]]; then
     gps=$(coords_from_ip "$(ip)")
@@ -99,7 +100,9 @@ render_and_capture() {
   fi
 
   start_ws
-  capture $(map_url "$gps") $(res)
+  url=$(map_url "$gps" "$ZOOM")
+  size=$(res)
+  capture "$url" "$size"
   relink "$PLACE"
   setwall
 
@@ -112,7 +115,7 @@ main() {
     relink
     setwall
   else
-    render_and_capture "$1"
+    render_and_capture "$1" "$2"
   fi
 }
 
@@ -120,7 +123,7 @@ cd "$REPO" || exit
 
 case "$1" in 
   list) list;;
-  set) main "$2";;
+  set) main "$2" "$3";;
   *) main;;
 esac
 

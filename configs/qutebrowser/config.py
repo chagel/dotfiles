@@ -4,6 +4,8 @@ config.load_autoconfig()
 import dracula
 dracula.blood(c, {})
 
+c.auto_save.session = True
+
 # c.qt.highdpi = True
 
 c.editor.command = ['st', '-e', 'nvim', '{file}']
@@ -33,6 +35,9 @@ config.bind('j', 'scroll down ;; scroll down')
 config.bind('k', 'scroll up ;; scroll up')
 config.bind('x', 'tab-close')
 
+config.bind('<Ctrl-Shift-j>', 'zoom-out')
+config.bind('<Ctrl-Shift-k>', 'zoom-in')
+
 config.bind('<Ctrl-b>', 'config-cycle statusbar.show always never')
 config.bind('<Ctrl-h>', 'config-cycle tabs.show always never')
 
@@ -41,7 +46,8 @@ config.bind('<Ctrl-,>', 'spawn --userscript qute_1pass.py fill_username --cache-
 config.bind('<Ctrl-/>', 'spawn --userscript qute_1pass.py fill_password --cache-session')
 config.bind('<Ctrl-?>', 'spawn --userscript qute_1pass.py fill_totp --cache-session')
 
-config.bind('<Ctrl-r>', 'spawn --userscript readability-js')
+config.bind('<Ctrl-r>', 'spawn --userscript readability.js')
 config.bind('<Ctrl-d>', 'spawn --userscript pinboard.sh')
 config.bind('<Ctrl-o>', 'spawn --userscript translate.sh')
+config.bind('<Ctrl-g>', 'spawn --userscript translate_page.sh')
 

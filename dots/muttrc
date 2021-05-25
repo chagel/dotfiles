@@ -1,9 +1,10 @@
 bind editor <space> noop
 bind index,pager g noop
 
-folder-hook "gmail" 'source ~/.config/mutt/accounts/gmail'
-folder-hook "pipi"  'source ~/.config/mutt/accounts/pipi'
-folder-hook "icloud"    'source ~/.config/mutt/accounts/icloud'
+folder-hook "gmail"   'source ~/.config/mutt/accounts/gmail'
+folder-hook "pipi"    'source ~/.config/mutt/accounts/pipi'
+folder-hook "icloud"  'source ~/.config/mutt/accounts/icloud'
+folder-hook "fara"    'source ~/.config/mutt/accounts/fara'
 
 source ~/.config/mutt/themes/custom
 source ~/.config/mutt/accounts/gmail
@@ -111,6 +112,7 @@ macro index g0 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/boxe
 macro index g1 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/gmail'<enter><change-folder>!<enter>
 macro index g2 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/pipi'<enter><change-folder>!<enter>'
 macro index g3 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/icloud'<enter><change-folder>!<enter>'
+macro index g4 <sync-mailbox><enter-command>'source ~/.config/mutt/accounts/fara'<enter><change-folder>!<enter>'
 
 # goobook to handle contacts
 set query_command="goobook query '%s'"

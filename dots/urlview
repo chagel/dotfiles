@@ -26,6 +26,6 @@ REGEXP (((http|https|ftp|gopher)|mailto)[.:][^ >"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>
 #COMMAND lynx %s
 #COMMAND netscape -remote 'openURL(%s)'
 #COMMAND echo %s | pbcopy
-COMMAND firefox %s
+COMMAND handlr open %s
 
 
