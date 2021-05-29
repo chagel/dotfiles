@@ -56,4 +56,4 @@ alias ffo="vim $(fd -t f -a1 $1)"
 alias fdo="vim $(fd -t d -a1 $1)"
 
 alias mux="tmuxinator"
-alias vim="nvim"
+alias vim="/usr/local/bin/nvim"

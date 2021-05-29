@@ -6,52 +6,39 @@ set rtp+=~/.vim/rtp/
 set rtp+=~/.fzf
 
 call plug#begin('~/.vim/plugged')
-"Plug 'spolu/dwm.vim'
+"Plug 'dang/dwm.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'benmills/vimux'
-Plug 'burnettk/vim-angular'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'dyng/ctrlsf.vim'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'edkolev/tmuxline.vim' 
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
-Plug 'jceb/vim-orgmode'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'kchmck/vim-coffee-script'
-Plug 'leafgarland/typescript-vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
-Plug 'marcweber/vim-addon-mw-utils'
 Plug 'mattn/emmet-vim'
 Plug 'mcchrish/nnn.vim'
-Plug 'mileszs/ack.vim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'ngmy/vim-rubocop'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pechorin/any-jump.vim'
-Plug 'rbgrouleff/bclose.vim'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 Plug 'reedes/vim-wordy'
-Plug 'rizzatti/dash.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'slim-template/vim-slim'
 Plug 'suan/vim-instant-markdown'
 Plug 't9md/vim-choosewin'
-Plug 'taniarascia/new-moon.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'thoughtbot/vim-rspec'
 Plug 'tmux-Plugins/vim-tmux-focus-events'
-Plug 'tomtom/tlib_vim'
 Plug 'tpope/gem-ctags'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-dispatch'
@@ -61,14 +48,9 @@ Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
-Plug 'voldikss/vim-floaterm'
+Plug 'vim-syntastic/syntastic'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-notes'
-
-"if has('nvim')
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"endif
 
 call plug#end()
 
@@ -89,7 +71,7 @@ let g:lightline = {
       \ 'component_function': {
       \   'filename': 'funs#LightLineFilename',
       \   'gitbranch': 'FugitiveHead'
-      \ }
+   \ }
       \ }
 
 
@@ -118,18 +100,6 @@ set nocursorline
 "autocmd InsertLeave,WinEnter * set cursorline
 "autocmd InsertEnter,WinLeave * set nocursorline
 
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
-
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
 
 " search 
 set incsearch
@@ -163,28 +133,23 @@ map <leader>p :bp<cr>
 "
 nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 
-" rspec commands
-map <Leader>r :call RunCurrentSpecFile()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-"map <Leader>s :call RunNearestSpec()<CR>
-"map <Leader>a :call RunAllSpecs()<CR>
-
-map <leader>f zfat<cr>
 map <leader>a za<cr>
 map <leader>s :w<cr>
 map <leader>q :q<cr>
-map <leader>e :NERDTreeTabsToggle<CR>
 map <leader>w :NERDTreeFind<CR>
 map <leader>v :tabedit ~/.vimrc<CR>
-map <S-F> :CtrlSF 
 
 " fzf commands
-map <C-F> :Ag<cr>
+map <C-F> :Rg<cr>
 map <C-P> :Files<cr>
 map <C-B> :Buffers<cr>
 map <C-M> :Windows<cr>
 map <leader>c :Commits<CR>
 map <leader>y :History/<CR>
+
+"nnoremap <C-P> <cmd>Telescope find_files<cr>
+"nnoremap <C-F> <cmd>Telescope live_grep<cr>
+"nnoremap <C-B> <cmd>Telescope buffers<cr>
 
 " esay align motions
 vmap <Enter> <Plug>(EasyAlign)
@@ -194,10 +159,7 @@ nmap -  <Plug>(choosewin)
 au! User GoyoEnter nested call funs#goyo_enter()
 au! User GoyoLeave nested call funs#goyo_leave()
 
-au BufRead,BufNew *.rabl set filetype=ruby
-au filetype html,eruby imap <buffer><expr><tab> funs#zen_html_tab()
-au filetype python setlocal mp=python\ %
-au filetype ruby setlocal mp=ruby\ %
+au filetype html,eruby,slim imap <buffer><expr><tab> funs#zen_html_tab()
 au filetype mail setlocal formatoptions+=nawrtcp
 
 " customize split borders
@@ -209,23 +171,14 @@ set fillchars+=vert:\
 
 let g:choosewin_overlay_enable = 1
 
-" NERDTree settings
-let g:nerdtree_tabs_open_on_gui_startup=0
-
-" Enable Flog
-let g:flog_enable=0
-
 " vim-notes doc folder
 let g:notes_directories = ["~/Dropbox/Sketch/Notes/2021"]
 
-" ack -> ag(the silver searcher)
-let g:ackprg = 'ag --nogroup --nocolor --column'
+"" ack -> ag(the silver searcher)
+"let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " vimux panel height
 let g:VimuxHeight = "15"
-
-" Dispatch rspec
-let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 
 " Collect org files to show in agenda
 let g:org_agenda_files = ['~/Dropbox/Sketch/Orgs/*.org']
@@ -242,10 +195,11 @@ let g:deoplete#enable_at_startup = 1
 
 let g:table_mode_corner='|'
 
-"let g:nnn#layout = { 'window': { 'width': 0.6, 'height': 0.6, 'highlight': 'Debug' } }
+let g:nnn#layout = { 'window': { 'width': 0.6, 'height': 0.6, 'highlight': 'Debug' } }
 
 "let g:dwm_map_keys = 0
 "nmap <C-Space> <Plug>DWMFocus
+"let g:dwm_master_pane_width=90
 
 " performance tuning
 runtime macros/matchit.vim     " performanc issue?
