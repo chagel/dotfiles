@@ -1,9 +1,10 @@
 [Unit]
 Description=Redshift display colour temperature adjustment
 Documentation=http://jonls.dk/redshift/
+After=graphical-session.target
 
 [Service]
-Environment=DISPLAY=:0
+Environment='XAUTHORITY=/home/mike/.Xauthority' 'DISPLAY=:0'
 ExecStart=/usr/bin/redshift
 Restart=always
 

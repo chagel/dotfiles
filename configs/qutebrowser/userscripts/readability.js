@@ -43,13 +43,61 @@ const HEADER = `
     <meta charset="UTF-8">
     <title>%s</title>
     <style type="text/css">
+        .theme-light {
+           --color-primary: #0060df;
+           --color-secondary: #fbfbfe;
+           --color-accent: #fd6f53;
+           --font-color: #000000;
+           --link-color: #0060df;
+        }
+        .theme-dark {
+           --color-primary: #17ed90;
+           --color-secondary: #1a1a1a;
+           --color-accent: #12cdea;
+           --font-color: #f2f2f2;
+           --link-color: #45a1ff;
+        }
+        .theme-sepia {
+           --color-primary: #17ed90;
+           --color-secondary: #f4ecd8;
+           --color-accent: #12cdea;
+           --font-color: #5b4636;
+           --link-color: #0060df;
+        }
+        ul.themes {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            list-style-type: none;
+            padding: 0; 
+            margin: 0;
+        }
+        ul.themes > li {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            float: left;
+            border: 1px solid #333;
+        }
+        li.light {
+            background-color: #fff;
+
+        }
+        li.dark {
+            background-color: #1a1a1a;
+
+        }
+        li.sepia {
+            background-color: #f4ecd8;
+        }
+
         body {
             margin: 30px auto;
             max-width: 650px;
             line-height: 1.4;
             padding: 0 10px;
-            background-color: #f4ecd8;
-            color: #5b4636;
+            background-color: var(--color-secondary);
+            color: var(--font-color);
         }
         h1, h2, h3 {
             line-height: 1.2;
@@ -61,7 +109,10 @@ const HEADER = `
             margin: 0 0;
         }
         a.reader-title {
-            color: #5b4636 !important;
+            color: var(--font-color) !important;
+        }
+        a {
+            color: var(--link-color);
         }
         img {
             max-width:100%;
@@ -119,10 +170,35 @@ const HEADER = `
     yaDhjMS4xMSAwIDItMC44OTUgMi0ycy0wLjg5NS0yLTItMnoiIGZpbGw9IiNmZmYiLz4KPC9nPgo8L3N2Zz4K"/>
 </head>
 <body class="qute-readability">
+    <ul class="themes"><li class="light"></li><li class="dark"></li><li class="sepia"></li></ul>
     <h1 class="reader-title">%s</h1>
     <div>From <a class="reader-title" href="%s">%s</a></div>
     <hr>
     %s
+    <script type="text/javascript">
+    (function () {
+        var setTheme = function(theme) {
+            localStorage.setItem('theme', theme);
+            document.documentElement.className = "theme-"+ theme;
+        }
+
+        var theme = document.getElementsByClassName("themes")[0];
+        var colors = theme.children;
+        for (i=0; i < colors.length; i++) {
+            colors[i].addEventListener("click", function(event){
+                setTheme(event.target.className);
+            })
+        }
+
+        var current = localStorage.getItem('theme');
+        if (current != null) {
+            setTheme(current)
+        }
+        else {
+            setTheme('dark');
+        }
+    })();
+    </script>
 </body>
 </html>
 `;
@@ -157,6 +233,7 @@ getDOM(target, domOpts).then(dom => {
             return 1;
         }
         // Success
-        qute.open(['-t', '-r', tmpFile]);
+        qute.open(['-r', tmpFile]);
     })
 });
+

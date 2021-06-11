@@ -3,7 +3,6 @@ filetype off                  " required!
 set hidden
 
 set rtp+=~/.vim/rtp/
-set rtp+=~/.fzf
 
 call plug#begin('~/.vim/plugged')
 "Plug 'dang/dwm.vim'
@@ -16,6 +15,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'edkolev/tmuxline.vim' 
 Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -144,6 +144,7 @@ map <C-F> :Rg<cr>
 map <C-P> :Files<cr>
 map <C-B> :Buffers<cr>
 map <C-M> :Windows<cr>
+map <leader>b :Git blame<CR>
 map <leader>c :Commits<CR>
 map <leader>y :History/<CR>
 
@@ -173,9 +174,6 @@ let g:choosewin_overlay_enable = 1
 
 " vim-notes doc folder
 let g:notes_directories = ["~/Dropbox/Sketch/Notes/2021"]
-
-"" ack -> ag(the silver searcher)
-"let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " vimux panel height
 let g:VimuxHeight = "15"

@@ -18,7 +18,7 @@ alias notes="vim -c 'RecentNotes'"
 alias ns="ls -c $NPATH | egrep -i $1"
 
 alias b="bat"
-alias f="feh"
+alias f="fzf"
 alias h="history"
 alias v="zathura" 
 alias n="nnn -d -T t"
@@ -48,12 +48,12 @@ alias mxlm="timew export :lastmonth | ~/.timewarrior/extensions/to-csv"
 
 alias screenmouse="find-cursor -r0 -l 1 -d 5 -s 30 -w 100 -c red"
 
-#export FZF_DEFAULT_COMMAND="fd . /"
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_ALT_C_COMMAND="fd -t d . /"
+export FZF_DEFAULT_COMMAND='fd . .'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd -t d . /"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --preview-window down:1 --bind 'ctrl-e:execute(nvim {}),ctrl-n:execute(nnn {})'"
 
-alias ffo="vim $(fd -t f -a1 $1)"
-alias fdo="vim $(fd -t d -a1 $1)"
+#alias ffo="vim $(fd -t f -a1 $1)"
+#alias fdo="vim $(fd -t d -a1 $1)"
 
 alias mux="tmuxinator"
-alias vim="/usr/local/bin/nvim"

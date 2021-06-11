@@ -36,7 +36,7 @@ vim-config:
 
 vim-update:
 	## update vim plugins
-	@vim +PlugUpgrade +PlugInstall +PlugUpdate 
+	@/usr/local/bin/nvim -E -u NONE -S ${HOME}/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 zsh-config:
 	## config zsh 
@@ -44,7 +44,7 @@ zsh-config:
 
 zsh-update:
 	## update omz
-	@omz update 
+	@sh ${ZSH}/tools/upgrade.sh
 
 tmux-config:
 	## config tmux 

@@ -18,7 +18,9 @@ c.url.default_page = "https://web.tabliss.io"
 c.url.searchengines = {'DEFAULT': 'https://www.google.com/search?q={}', 
                        'w': 'https://en.wikipedia.org/wiki/{}', 
                        'd': 'https://devhints.io/{}', 
-                       'a': 'https://wiki.archlinux.org/index.php/{}'}
+                       'a': 'https://wiki.archlinux.org/index.php/{}',
+                       'r': 'https://apidock.com/ruby/{}', 
+                       'l': 'https://apidock.com/rails/{}'} 
 c.window.hide_decoration = True
 c.fonts.default_family = "Cantarell"
 c.fonts.default_size = "14px"
@@ -29,6 +31,7 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 c.downloads.location.directory = '~/Downloads/'
 
 config.bind('X', 'undo')
+config.bind('hh', 'home')
 config.bind('d', 'scroll-page 0 0.5')
 config.bind('u', 'scroll-page 0 -0.5')
 config.bind('j', 'scroll down ;; scroll down')

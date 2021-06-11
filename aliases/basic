@@ -5,6 +5,7 @@ alias ll="ls -lG --color"
 alias lt="ls -lGt --color | head"
 alias o="handlr open"
 
+alias vim="/usr/local/bin/nvim"
 alias e="vim"
 
 alias vie="vim ~/.vimrc"
@@ -15,8 +16,9 @@ alias vid="vim ~/Dotfiles/"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
+
 export LESS=' -R '
 
-export EDITOR="nvim"
+export EDITOR="/usr/local/bin/nvim"
 export CDPATH="$HOME/workspace"
 
