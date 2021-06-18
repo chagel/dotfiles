@@ -88,6 +88,20 @@ Mod4 + c
 m:0xd + c:19
 Control+Shift+Alt + 0
 
+# open the recent download file
+"cd /home/mike/Downloads && /usr/bin/handlr open $(ls -t | head -1)"
+m:0xd + c:32
+Control+Shift+Alt + o
+
+# rofi-1pass 
+"/usr/bin/rofi -show p -modi p:rofi-1pass"
+m:0xd + c:10
+Control+Shift+Alt + 1
+
+"/usr/bin/1password"
+m:0xd + c:11
+Control+Shift+Alt + 2
+
 # screen brightness inc
 # screen brightness dec
 #"sudo /usr/bin/xbacklight -dec 10"

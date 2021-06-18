@@ -8,10 +8,11 @@
   df = diff
   dt = difftool
   mt = mergetool
+	mgt = merge -X theirs 
   ci = commit -a -v
   co = checkout
   st = status
-  br = branch
+	br = branch --sort=-creatordate 
   lg = log --graph --pretty=format:'%Cred%h%Creset %Cblue%aN%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative 
 	tags = !"git for-each-ref \
 		--sort=taggerdate \
@@ -50,6 +51,22 @@
 
 [submodule]
   recurse = true
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
+[credential "smtp://chagel%40gmail.com@smtp.gmail.com%3a587"]
+	helper = !pass show git/sendemail_pass
+
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpuser = chagel@gmail.com
+	smtpencryption = tls
+	smtpserverport = 587
+	annotate = yes
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
