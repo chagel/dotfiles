@@ -30,6 +30,8 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 
 c.downloads.location.directory = '~/Downloads/'
 
+c.content.javascript.can_access_clipboard = True
+
 config.bind('X', 'undo')
 config.bind('hh', 'home')
 config.bind('d', 'scroll-page 0 0.5')
