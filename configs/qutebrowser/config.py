@@ -65,5 +65,6 @@ config.bind('<Ctrl-r>', 'spawn --userscript readability.js')
 config.bind('<Ctrl-d>', 'spawn --userscript pinboard.sh')
 config.bind('<Ctrl-o>', 'spawn --userscript translate.sh')
 config.bind('<Ctrl-g>', 'spawn --userscript translate_page.sh')
+config.bind('<Ctrl-m>', 'spawn --userscript notion_deck.js')
 
 
