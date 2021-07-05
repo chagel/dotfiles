@@ -210,7 +210,6 @@ if (!fs.existsSync(scriptsDir)) {
 }
 
 let getDOM, domOpts, target;
-// When hinting, use the selected hint instead of the current page
 if (process.env.QUTE_MODE === 'hints') {
     getDOM = JSDOM.fromURL;
     target = process.env.QUTE_URL;
@@ -232,7 +231,6 @@ getDOM(target, domOpts).then(dom => {
             qute.messageError([`"${err}"`])
             return 1;
         }
-        // Success
         qute.open(['-r', tmpFile]);
     })
 });
