@@ -28,6 +28,7 @@ const JSDOM = require('jsdom').JSDOM;
 const fs    = require('fs');
 const path  = require('path');
 const util  = require('util');
+const log = require('simple-node-logger').createSimpleLogger('/tmp/qute_notion_slide.log');
 
 const template = `
 <!DOCTYPE html>
@@ -149,6 +150,7 @@ class NotionParser {
 	}
 
 	parseNode(node) {
+		//log.info(node.outerHTML);
 		if (node.classList.contains("notion-text-block")) 
 			this.parseText(node); 
 		if (node.classList.contains("notion-bulleted_list-block")) 
@@ -200,19 +202,19 @@ class NotionParser {
 	}
 
 	parseText(node, type = "P") {
-		let elements = node.querySelectorAll("[data-root=true]");
+		let elements = node.querySelectorAll("[data-content-editable-leaf=true]");
 		if (elements.length == 0) return;
 		this.addNode(type, this.formatContent(elements[0].innerHTML), this.getLevel(node));
 	}
 
 	parseHeader(node, type) {
-		let elements = node.querySelectorAll("[data-root=true]");
+		let elements = node.querySelectorAll("[data-content-editable-leaf=true]");
 		if (elements.length == 0) return;
 		this.addNode(type, elements[0].innerHTML, this.getLevel(node));
 	}
 
 	parseCode(node) {
-		let elements = node.querySelectorAll("[data-root=true]");
+		let elements = node.querySelectorAll("[data-content-editable-leaf=true]");
 		if (elements.length == 0) return;
 		this.addNode("PRE", elements[0].textContent, this.getLevel(node));
 	}
@@ -222,19 +224,19 @@ class NotionParser {
 	}
 
 	parseToggle(node) {
-		let elements = node.querySelectorAll("[data-root=true]");
+		let elements = node.querySelectorAll("[data-content-editable-leaf=true]");
 		if (elements.length == 0) return;
 		this.addNode("TL", elements[0].innerHTML, this.getLevel(node));
 	}
 
 	parseCallout(node) {
-		let elements = node.querySelectorAll("[data-root=true]");
+		let elements = node.querySelectorAll("[data-content-editable-leaf=true]");
 		if (elements.length == 0) return;
 		this.addNode("CA", elements[0].innerHTML, this.getLevel(node));
 	}
 
 	parseTodo(node) {
-		let elements = node.querySelectorAll("[data-root=true]");
+		let elements = node.querySelectorAll("[data-content-editable-leaf=true]");
 		if (elements.length == 0) return;
 		let type = elements[0].style["text-decoration"].includes("line-through") ? "CHECKED" : "CHECK";
 		this.addNode(type, elements[0].innerHTML, this.getLevel(node));

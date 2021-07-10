@@ -10,11 +10,12 @@ source $ALIASES/dev
 export SCRIPTS=$HOME/Dotfiles/scripts
 export PATH="$SCRIPTS:$PATH"
 
+# clean the PATH variables
+export PATH=$(ruby -e "puts ENV['PATH'].split(':').uniq.sort.join(':')")
+
+# enter xwindow after console login
 if [[ "Darwin" != $(uname -s) ]]; then
-  # enter xwindow after console login
   if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     exec startx
   fi
-
 fi
-
