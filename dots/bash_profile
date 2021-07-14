@@ -1,8 +1,4 @@
-export SCRIPTS=$HOME/Dotfiles/scripts
 export ALIASES=$HOME/Dotfiles/aliases
-
-# autoload scripts
-export PATH="$SCRIPTS"
 
 # load customized aliases
 source $ALIASES/system
@@ -10,7 +6,15 @@ source $ALIASES/basic
 source $ALIASES/tools
 source $ALIASES/dev
 
-# enter xwindow after console login
-if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-  exec startx
+# autoload scripts
+export SCRIPTS=$HOME/Dotfiles/scripts
+export PATH="$SCRIPTS:$PATH"
+
+if [[ "Darwin" != $(uname -s) ]]; then
+  # enter xwindow after console login
+  if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    exec startx
+  fi
+
 fi
+

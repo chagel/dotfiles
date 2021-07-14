@@ -71,6 +71,7 @@ plugins=(
   fzf
   git
   history-substring-search
+  nvm
   osx
   systemd
   sudo 
@@ -80,7 +81,6 @@ plugins=(
   web-search
   z
   zsh-interactive-cd
-  zsh-nvm
   zsh_reload
 )
 

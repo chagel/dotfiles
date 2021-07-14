@@ -50,6 +50,7 @@ tmux-config:
 	## config tmux 
 	@ln -vsfn ${BASE}/tmux ${HOME}/.tmux
 	@ln -vsf ${BASE}/tmux/tmux.conf ${HOME}/.tmux.conf
+	@git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
 
 tmux-update:
 	## update tmux plugins 

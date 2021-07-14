@@ -1,8 +1,8 @@
 alias reload="source ~/.bash_profile"
 alias c="clear"
-alias l="ls -la --color"
-alias ll="ls -lG --color"
-alias lt="ls -lGt --color | head"
+alias l="ls -la"
+alias ll="ls -lG"
+alias lt="ls -lGt"
 alias o="handlr open"
 
 alias vim="/usr/local/bin/nvim"
