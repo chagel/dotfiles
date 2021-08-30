@@ -1,5 +1,5 @@
 * {
-    font: "Hack 16";
+    font: "Cantarell 20";
     foreground: #f8f8f2;
     background-color: #282a36;
     active-background: #bd93f9;
@@ -11,6 +11,7 @@
     separatorcolor: @active-background;
     bordercolor: #AAA;
     hlcolor:#bc92f8;
+    text-color: @foreground;
 }
 
 #window {
@@ -42,6 +43,9 @@
 #element {
     border:  0;
     padding: 1px ;
+}
+#element-icon {
+    padding: 5px;
 }
 #element.normal.normal {
     background-color: @background;

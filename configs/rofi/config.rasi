@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,ssh,windowcd,drun,file-browser,emoji";
+	modi: "window,run,ssh,windowcd,drun,filebrowser,emoji";
 	show-icons: true;
 	theme: "~/Dotfiles/themes/rofi/dracula.rasi";
 }
