@@ -1,2 +1,2 @@
 xhost + > /dev/null
-cd ~/Docks/dochat && DOCHAT_DPI=144 DOCHAT_WECHAT_VERSION=2.9.0.114 ./dochat.sh
+DOCHAT_DPI=144 DOCHAT_WECHAT_VERSION=3.3.0.115 ~/Workspaces/docker-wechat/dochat.sh
