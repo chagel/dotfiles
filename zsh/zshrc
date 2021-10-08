@@ -81,7 +81,6 @@ plugins=(
   web-search
   z
   zsh-interactive-cd
-  zsh_reload
 )
 
 source $ZSH/oh-my-zsh.sh
