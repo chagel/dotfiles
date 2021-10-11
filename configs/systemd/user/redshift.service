@@ -6,6 +6,7 @@ After=graphical-session.target
 [Service]
 Environment='XAUTHORITY=/home/mike/.Xauthority' 'DISPLAY=:0'
 ExecStart=/usr/bin/redshift
+RestartSec=5
 Restart=always
 
 [Install]

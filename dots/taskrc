@@ -30,3 +30,4 @@ include /usr/share/doc/task/rc/dark-256.theme
 #include /usr/share/doc/task/rc/no-color.theme
 
 context.pipi=project:pipi
+news.version=2.6.0
