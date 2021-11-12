@@ -72,7 +72,7 @@ plugins=(
   git
   history-substring-search
   nvm
-  osx
+  macos
   systemd
   sudo 
   taskwarrior
