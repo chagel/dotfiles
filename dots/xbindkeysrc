@@ -102,6 +102,9 @@ Control+Shift+Alt + 1
 m:0xd + c:11
 Control+Shift+Alt + 2
 
+"/usr/bin/galculator"
+m:0xd + c:12
+Control+Shift+Alt + 3
 # screen brightness inc
 # screen brightness dec
 #"sudo /usr/bin/xbacklight -dec 10"
