@@ -105,6 +105,10 @@ Control+Shift+Alt + 2
 "/usr/bin/galculator"
 m:0xd + c:12
 Control+Shift+Alt + 3
+
+"/usr/bin/gnome-clocks"
+m:0xd + c:13
+Control+Shift+Alt + 4
 # screen brightness inc
 # screen brightness dec
 #"sudo /usr/bin/xbacklight -dec 10"
