@@ -19,6 +19,8 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 
   rescuetime > /dev/null &
 
+  xbindkeys
+
   if [[ -z $DISPLAY && $(tty) == /dev/tty1 && $XDG_SESSION_TYPE == tty ]]; then
     GTK_IM_MODULE=ibus
     QT_IM_MODULE=ibus
