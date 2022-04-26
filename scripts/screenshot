@@ -17,4 +17,4 @@ classic() {
 
 #classic
 
-flameshot gui -p $HOME/Dropbox/Pics/Screenshots/
+flameshot gui -c -p $HOME/Dropbox/Pics/Screenshots/
