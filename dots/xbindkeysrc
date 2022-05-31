@@ -109,6 +109,11 @@ Control+Shift+Alt + 3
 "/usr/bin/gnome-clocks"
 m:0xd + c:13
 Control+Shift+Alt + 4
+
+"/usr/bin/gpaste-client ui"
+m:0xd + c:14
+Control+Shift+Alt + 5
+
 # screen brightness inc
 # screen brightness dec
 #"sudo /usr/bin/xbacklight -dec 10"
