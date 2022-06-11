@@ -27,6 +27,9 @@ wallpaper
 # https://unix.stackexchange.com/questions/510244/hdmi-monitors-not-correctly-detected-after-suspend-if-laptop-lid-closed
 xset -dpms
 
+xset s 300
+xss-lock lock &
+
 # alpha and shadow effect
 #compton -cCGf &
 
