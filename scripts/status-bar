@@ -30,8 +30,8 @@ pvol() {
 
 pbat() {
   STAT=$(acpi -i | sed -E "s/^Battery 0:\s([a-zA-Z\s]*),.*$/\1/" | head -n1)
-  PERC=$(acpi -i | grep -m 1 "Battery 0:" | awk -F ', ' '{print $2}' | sed -E "s/([0-9]*)%/\1/")
-  if [ $STAT == "Charging" ]; then
+  PERC=$(cat /sys/class/power_supply/BAT0/capacity)
+  if [ "$STAT" = "Charging" ]; then
     echo -e "\uf0e7 $PERC%" 
   elif [ "$PERC" -gt "94" ]; then 
     echo -e "\uf240 $PERC%"
