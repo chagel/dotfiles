@@ -4,8 +4,9 @@ export SCRIPTS=$HOME/Dotfiles/scripts
 # hdpi scales
 #export QT_QPA_PLATFORMTHEME=gtk2
 export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_ENABLE_HIGHDPI_SCALING=1
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
-export QT_SCALE_FACTOR=1.5
+export QT_SCALE_FACTOR=1.4
 export GDK_SCALE=0.8
 export GDK_DPI_SCALE=0.7
 
@@ -25,10 +26,10 @@ wallpaper
 # dual monitors recover after suspend
 # https://bugs.launchpad.net/ubuntu/+source/kscreen/+bug/1573345
 # https://unix.stackexchange.com/questions/510244/hdmi-monitors-not-correctly-detected-after-suspend-if-laptop-lid-closed
-xset -dpms
+#xset -dpms
 
-xset s 300
-xss-lock lock &
+xset s 600
+xss-lock --ignore-sleep lock &
 
 # alpha and shadow effect
 #compton -cCGf &
