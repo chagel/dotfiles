@@ -1,5 +1,8 @@
 bind editor <space> noop
 bind index,pager g noop
+bind index,pager j noop
+bind index,pager k noop
+
 
 folder-hook "gmail"   'source ~/.config/mutt/accounts/gmail'
 folder-hook "pipi"    'source ~/.config/mutt/accounts/pipi'
