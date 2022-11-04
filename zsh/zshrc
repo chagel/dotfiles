@@ -73,6 +73,7 @@ plugins=(
   history-substring-search
   nvm
   macos
+  rbenv
   systemd
   sudo 
   taskwarrior
