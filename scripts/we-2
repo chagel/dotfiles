@@ -1,0 +1,2 @@
+xhost + > /dev/null
+DOCHAT_DPI=144 DOCHAT_WECHAT_VERSION=3.3.0.115-2 DOCHAT_SKIP_PULL=1 IMAGE_NAME=DoChat2 HOST_DIR=dochat-2 ~/Workspaces/docker-wechat/dochat.sh
