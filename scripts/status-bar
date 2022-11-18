@@ -57,7 +57,7 @@ pcal() {
 }
 
 ptask() {
-  COUNT=$(task +OVERDUE or due:eod -COMPLETED count)
+  COUNT=$(task +OVERDUE or due:eod or status:pending -COMPLETED count)
   echo -e "\uf024 $COUNT"
 }
 
