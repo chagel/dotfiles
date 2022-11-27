@@ -15,17 +15,17 @@ export RBENV_ROOT=$HOME/.rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv
+export PYENV_ROOT=$HOME/.pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init --path)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # jenv
 # export JENV_ROOT=/usr/local/var/jenv
 # if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 export NODE_PATH=$NODE_PATH:$(npm root -g)
 
 #export ID_FILE=~/.ssh/aws-pipi-1504.pem

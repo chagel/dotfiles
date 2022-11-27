@@ -1,2 +1,0 @@
-xhost + > /dev/null
-DOCHAT_DPI=144 DOCHAT_WECHAT_VERSION=3.3.0.115 ~/Workspaces/docker-wechat/dochat.sh

@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'benmills/vimux'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -57,11 +58,20 @@ call plug#end()
 set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 filetype plugin indent on     " required!
 
+if !has('gui_running') && &term =~ '^\%(screen\|tmux\)'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+
+set termguicolors
+
 syntax on
 
-let g:dracula_colorterm = 0
-let g:dracula_italic = 0
-colorscheme dracula
+"let g:dracula_colorterm = 0
+"let g:dracula_italic = 0
+"colorscheme dracula
+
+colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 let g:lightline = { 
       \ 'colorscheme': 'one', 

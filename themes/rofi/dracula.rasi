@@ -2,9 +2,11 @@
     font: "Cantarell 20";
     foreground: #f8f8f2;
     background-color: #282a36;
+    background: #282a36;
     active-background: #bd93f9;
     light-background: #6272a4;
-    urgent-background: #ff5555;
+    urgent-background: @background;
+    urgent-foreground: @foreground;
     selected-background: @light-background;
     selected-urgent-background: @urgent-background;
     selected-active-background: @active-background;
