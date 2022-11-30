@@ -13,7 +13,7 @@ setxkbmap us
 #killall xcape ; xcape -e 'Ctrl_R=Escape'
 
 # key stroke smooth
-xset r rate 300 50
+xset r rate 200 50
 
 ## magic trackpad enables tapping/acceleration
 #TOUCHPAD_ID=$(xinput list | grep Magic | grep -oh "id=[0-9]*" | tr '=' ' '| awk '{print $2}')
