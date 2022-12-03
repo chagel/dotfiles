@@ -4,6 +4,15 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 lua << EOF
+  -- disable netrw at the very start of your init.lua (strongly advised)
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+
+  -- empty setup using defaults
+  require("nvim-tree").setup()
+
+  vim.g.coc_global_extensions = {'coc-json', 'coc-solargraph'}
+
   local nvim_lsp = require('lspconfig')
 
   -- Use an on_attach function to only map the following keys 
