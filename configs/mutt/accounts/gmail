@@ -21,13 +21,13 @@ set certificate_file = "~/.mutt/a1/certificates"
 set ssl_starttls = yes
 set ssl_force_tls = yes
 
-bind index,pager gi noop
-bind index,pager gy noop
-bind index,pager gs noop
-bind index,pager gp noop
-bind index,pager go noop
-bind index,pager gd noop
-bind index,pager gn noop
+#bind index,pager gi noop
+#bind index,pager gy noop
+#bind index,pager gs noop
+#bind index,pager gp noop
+#bind index,pager go noop
+#bind index,pager gd noop
+#bind index,pager gn noop
 
 unmailboxes *
 mailboxes "=INBOX" "=Sent" "=Drafts" "=Starred" "=Services" "=Private" "=Reading" "=Notes" "=Billing" "=Yifan"

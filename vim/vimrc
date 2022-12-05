@@ -25,21 +25,23 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mcchrish/nnn.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'ngmy/vim-rubocop'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons' " optional, for file icons
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pechorin/any-jump.vim'
-Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
 Plug 'reedes/vim-wordy'
 Plug 'sheerun/vim-polyglot'
 Plug 'suan/vim-instant-markdown'
 Plug 't9md/vim-choosewin'
 Plug 'tmux-Plugins/vim-tmux-focus-events'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/gem-ctags'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-dispatch'
@@ -151,7 +153,7 @@ nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 map <leader>a za<cr>
 map <leader>s :w<cr>
 map <leader>q :q<cr>
-map <leader>w :NERDTreeFind<CR>
+map <leader>w :NvimTreeFindFile<CR>
 map <leader>v :tabedit ~/.vimrc<CR>
 
 " fzf commands

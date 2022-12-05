@@ -4,7 +4,6 @@ bind index,pager j noop
 bind index,pager k noop
 bind index,pager o noop
 bind index,pager p noop
-bind index,pager m noop
 
 
 folder-hook "gmail"   'source ~/.config/mutt/accounts/gmail'
