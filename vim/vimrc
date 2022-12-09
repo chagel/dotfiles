@@ -14,7 +14,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'edkolev/tmuxline.vim' 
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -153,8 +153,10 @@ nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 map <leader>a za<cr>
 map <leader>s :w<cr>
 map <leader>q :q<cr>
-map <leader>w :NvimTreeFindFile<CR>
 map <leader>v :tabedit ~/.vimrc<CR>
+map <leader>w :NvimTreeFindFileToggle<CR>
+map _ :NvimTreeResize -20<CR>
+map + :NvimTreeResize +20<CR>
 
 " fzf commands
 map <C-F> :Rg<cr>
@@ -164,10 +166,6 @@ map <C-M> :Windows<cr>
 map <leader>b :Git blame<CR>
 map <leader>c :Commits<CR>
 map <leader>y :History/<CR>
-
-"nnoremap <C-P> <cmd>Telescope find_files<cr>
-"nnoremap <C-F> <cmd>Telescope live_grep<cr>
-"nnoremap <C-B> <cmd>Telescope buffers<cr>
 
 " esay align motions
 vmap <Enter> <Plug>(EasyAlign)
@@ -199,7 +197,7 @@ let g:VimuxHeight = "15"
 let g:org_agenda_files = ['~/Dropbox/Sketch/Orgs/*.org']
 
 " Scroll down supertab behavior
-let g:SuperTabDefaultCompletionType = "<c-n>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:instant_markdown_autostart = 0
 
 " Goyo zen writing 
