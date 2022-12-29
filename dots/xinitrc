@@ -33,6 +33,7 @@ xss-lock --ignore-sleep lock &
 
 # alpha and shadow effect
 #/usr/local/bin/picom -cCGf &
+xcompmgr -c -C -t-5 -l-5 -r3.3 -o.33 > /dev/null &
 
 # ibus input
 GTK_IM_MODULE=ibus
