@@ -278,6 +278,10 @@ for_window [class="feh"] resize set 1600 1200
 
 exec ibus-daemon -drx
 exec setxkbmap us
+exec xbindkyes --pool-rc
 exec mako
+
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 include /etc/sway/config.d/*
