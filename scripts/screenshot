@@ -17,4 +17,4 @@ classic() {
 
 #classic
 
-QT_SCALE_FACTOR=1 && flameshot gui #-c -p $HOME/Dropbox/Pics/Screenshots/
+ QT_SCREEN_SCALE_FACTORS="1;1" QT_SCALE_FACTOR=1 && flameshot gui #-c -p $HOME/Dropbox/Pics/Screenshots/

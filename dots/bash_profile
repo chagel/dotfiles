@@ -19,7 +19,7 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 
   if [[ -z $DISPLAY && $(tty) == /dev/tty1 && $XDG_SESSION_TYPE == tty ]]; then
 
-    # sh /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+    source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
     xset r rate 200 50
 
@@ -27,14 +27,15 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 
     xbindkeys
 
-    # GTK_IM_MODULE=ibus
-    # QT_IM_MODULE=ibus
-    # XMODIFIERS=@im=ibus
+    GTK_IM_MODULE=fcitx5
+    QT_IM_MODULE=fcitx5
+    XMODIFIERS=@im=fcitx5
+    XIM_PROGRAM=/usr/bin/fcitx5
 
-    # export XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
-    # ibus-daemon -drx
+    export XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
+    fcitx5 -d
 
-    # MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
-    gnome-shell --wayland
+    MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+    # gnome-shell --wayland
   fi
 fi
