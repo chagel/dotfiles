@@ -5,9 +5,8 @@ export LANG=en_US.UTF-8
 export PATH="/usr/bin:/usr/local/bin:/usr/sbin:$HOME/.local/bin:/usr/local/sbin:/var/lib/snapd/snap/bin:$PATH"
 export PRINTER=HP_ENVY_5660_series_E6130E
 
-alias install="sudo pacman -S$1"
-alias uninstall="sudo pacman -Rns$1"
-alias upgrade-system="sudo pacman -Syu"
-alias upgrade-aur="yay -Syu --devel --timeupdate"
+alias install="sudo dnf install$1"
+alias uninstall="sudo dnf remove$1"
+alias upgrade-system="sudo dnf upgrade"
 alias nap="systemctl suspend"
 

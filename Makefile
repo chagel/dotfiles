@@ -36,7 +36,7 @@ vim-config:
 
 vim-update:
 	## update vim plugins
-	@/usr/local/bin/nvim -E -u NONE -S ${HOME}/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
+	@nvim -E -u NONE -S ${HOME}/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 zsh-config:
 	## config zsh 
