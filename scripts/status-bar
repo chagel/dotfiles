@@ -29,6 +29,9 @@ pvol() {
 }
 
 pbat() {
+  # grep -C2 'Bose QuietComfort 35' | grep battery | head -n1 | awk -F '"' '{print $2}'
+  # upower -d
+
   STAT=$(acpi -i | sed -E "s/^Battery 0:\s([a-zA-Z\s]*),.*$/\1/" | head -n1)
   PERC=$(cat /sys/class/power_supply/BAT0/capacity)
   if [ "$STAT" = "Charging" ]; then
