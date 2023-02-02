@@ -88,11 +88,11 @@ window:
   #dynamic_title: true
 
   # Window class (Linux/BSD only):
-  class:
+  # class:
     # Application instance name
-    instance: Console
+    # instance: Console
     # General application class
-    general: Console
+    # general: Console
 
   # Decorations theme variant (Linux/BSD only)
   #
@@ -158,7 +158,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 17.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought
   # of as modifying the line spacing, and `offset.x` as modifying the letter

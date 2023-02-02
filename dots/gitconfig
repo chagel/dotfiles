@@ -1,7 +1,7 @@
 [user]
 	name = MGC
 	email = chagel@gmail.com
-	signingkey = CE7B58CACC69FFB0
+	; signingkey = CE7B58CACC69FFB0
 [push]
 	default = simple
 [alias]

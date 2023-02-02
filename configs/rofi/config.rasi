@@ -1,5 +1,5 @@
 configuration {
-	modi: "window,run,ssh,windowcd,drun,filebrowser,emoji";
+	modi: "run,ssh,drun,filebrowser";
 	show-icons: true;
 }
 
