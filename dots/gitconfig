@@ -54,7 +54,7 @@
 
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/usr/local/bin/gh auth git-credential
 
 [credential "smtp://chagel%40gmail.com@smtp.gmail.com%3a587"]
 	helper = !pass show git/sendemail_pass

@@ -3,7 +3,7 @@ CONFIGS := $(shell ls configs)
 BASE := $(shell pwd)
 
 
-all: dotfile config
+all: dotfile config theme
 config: vim-config tmux-config zsh-config
 update: vim-update tmux-update zsh-update
 server: init basic
@@ -23,9 +23,6 @@ dotfile:
 
 theme:
 	## config GTK and other themes
-	@ln -vsfn ${BASE}/themes/gtk/gtk-3.0 ${HOME}/.config/gtk-3.0
-	@ln -vsfn ${BASE}/themes/gtk/gtk-4.0 ${HOME}/.config/gtk-4.0
-	@ln -vsf ${BASE}/themes/gtk/gtkrc-2.0 ${HOME}/.gtkrc-2.0
 	@ln -vsf ${BASE}/themes/zsh/mgc.zsh-theme ${HOME}/.oh-my-zsh/themes/mgc.zsh-theme
 
 vim-config:
