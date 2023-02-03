@@ -14,7 +14,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'edkolev/tmuxline.vim' 
-" Plug 'ervandew/supertab'
+Plug 'ervandew/supertab'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -25,7 +25,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mcchrish/nnn.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'ngmy/vim-rubocop'
 Plug 'nvim-lua/completion-nvim'
@@ -158,14 +157,8 @@ map <leader>w :NvimTreeFindFileToggle<CR>
 map _ :NvimTreeResize -20<CR>
 map + :NvimTreeResize +20<CR>
 
-" fzf commands
-map <C-F> :Rg<cr>
-map <C-P> :Files<cr>
-map <C-B> :Buffers<cr>
-map <C-M> :Windows<cr>
+" fzf commands [see telescope in init.vim] 
 map <leader>b :Git blame<CR>
-map <leader>c :Commits<CR>
-map <leader>y :History/<CR>
 
 " esay align motions
 vmap <Enter> <Plug>(EasyAlign)
@@ -197,7 +190,7 @@ let g:VimuxHeight = "15"
 let g:org_agenda_files = ['~/Dropbox/Sketch/Orgs/*.org']
 
 " Scroll down supertab behavior
-" let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:instant_markdown_autostart = 0
 
 " Goyo zen writing 
