@@ -62,3 +62,5 @@ alias aws-users="aws iam list-users --output table"
 alias cabrn='cf(){ git checkout -b z_features/$(date "+%Y%m")_"$1"; unset -f cf; }; cf'
 alias cabrf='cf(){ git checkout -b z_hotfix/$(date "+%Y%m")_"$1"; unset -f cf; }; cf'
 alias capr="hub pull-request -b x_releases/$(TZ=Asia/Shanghai date '+%Y%m%d') -p"
+
+alias ctags="`brew --prefix`/bin/ctags"
