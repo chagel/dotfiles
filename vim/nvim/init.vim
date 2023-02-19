@@ -11,6 +11,12 @@ lua << EOF
   -- empty setup using defaults
   require("nvim-tree").setup()
 
+  -- open the tree when startup
+  local function open_nvim_tree()
+    require("nvim-tree.api").tree.open()
+  end
+
+  vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
   -- telescope 
   local builtin = require('telescope.builtin')
