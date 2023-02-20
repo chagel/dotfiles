@@ -11,4 +11,4 @@ export SCRIPTS=$HOME/Dotfiles/scripts
 export PATH="$SCRIPTS:$PATH"
 
 # clean the PATH variables
-export PATH=$(ruby -e "puts ENV['PATH'].split(':').uniq.sort.join(':')")
+export PATH=$(ruby -e "puts ENV['PATH'].split(':').uniq.join(':')")

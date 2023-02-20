@@ -14,10 +14,6 @@ alias vit="vim ~/.tmux.conf"
 alias vib="vim ~/.bash_profile"
 alias vid="vim ~/Dotfiles/"
 
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
-
-
 export LESS=' -R '
 
 export EDITOR="/usr/local/bin/nvim"
