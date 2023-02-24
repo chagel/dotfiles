@@ -16,7 +16,7 @@ lua << EOF
     require("nvim-tree.api").tree.open()
   end
 
-  vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+  -- vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
   -- telescope 
   local builtin = require('telescope.builtin')
@@ -67,13 +67,13 @@ lua << EOF
 
 
   -- Setup LSP 
-  local nvim_lsp = require('lspconfig')
-  local servers = {'pyright', 'gopls', 'rust_analyzer', 'solargraph'}
-  for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-    }
-  end
+--  local nvim_lsp = require('lspconfig')
+--  local servers = {'pyright', 'gopls', 'rust_analyzer', 'solargraph'}
+--  for _, lsp in ipairs(servers) do
+--    nvim_lsp[lsp].setup {
+--      on_attach = on_attach,
+--    }
+--  end
 
   -- Enable treesitter syntax highlight
   require'nvim-treesitter.configs'.setup {

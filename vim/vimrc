@@ -166,7 +166,6 @@ nmap -  <Plug>(choosewin)
 au! User GoyoEnter nested call funs#goyo_enter()
 au! User GoyoLeave nested call funs#goyo_leave()
 
-au filetype html,eruby,slim imap <buffer><expr><tab> funs#zen_html_tab()
 au filetype mail setlocal formatoptions+=nawrtcp
 
 " customize split borders
@@ -183,9 +182,6 @@ let g:notes_directories = ["~/Dropbox/Sketch/Notes/2021"]
 
 " vimux panel height
 let g:VimuxHeight = "15"
-
-" Collect org files to show in agenda
-let g:org_agenda_files = ['~/Dropbox/Sketch/Orgs/*.org']
 
 " Scroll down supertab behavior
 let g:SuperTabDefaultCompletionType = "<c-n>"
