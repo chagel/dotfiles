@@ -9,6 +9,7 @@ export PATH="/opt/sphinx-3.1.1/bin:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.deno/bin:$PATH"
+export PATH="$HOME/Develop/flutter/bin:$PATH"
 
 # rbenv
 export RBENV_ROOT=$HOME/.rbenv
@@ -32,8 +33,10 @@ export NODE_PATH=$NODE_PATH:$(npm root -g)
 export ID_FILE=~/.ssh/ssh-pipi-2006.pem
 export ALI_ID_FILE=~/.ssh/aliyun-pipi-2003.pem
 
-# Temp fix for RMagick with imagemagick 6
-#export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/imagemagick6/pkgconfig
+# flutter web on linux
+export CHROME_EXECUTABLE=/usr/bin/chromium
+
+# export OPENAI_API_KEY=$(pass show keys/openai_api_key)
 
 alias be="bundle exec "
 alias beg="bundle exec guard"
