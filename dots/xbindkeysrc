@@ -93,8 +93,7 @@ Control+Shift+Alt + 0
 m:0xd + c:32
 Control+Shift+Alt + o
 
-# rofi-1pass 
-"/usr/bin/rofi -show p -modi p:rofi-1pass"
+"nautilus"
 m:0xd + c:10
 Control+Shift+Alt + 1
 

@@ -38,6 +38,8 @@ export CHROME_EXECUTABLE=/usr/bin/chromium
 
 # export OPENAI_API_KEY=$(pass show keys/openai_api_key)
 
+export MINI_RACER_VERSION='~>0.4.0'
+
 alias be="bundle exec "
 alias beg="bundle exec guard"
 alias bek="bundle exec rake"
