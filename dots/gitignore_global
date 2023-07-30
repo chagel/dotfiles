@@ -18,3 +18,5 @@ node_modules
 /home/lost+found/
 
 /run/timeshift
+
+.solargraph.yml

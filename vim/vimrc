@@ -15,17 +15,18 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'edkolev/tmuxline.vim' 
 Plug 'ervandew/supertab'
+Plug 'github/copilot.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'jackMort/ChatGPT.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 Plug 'mcchrish/nnn.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'muniftanjim/nui.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ngmy/vim-rubocop'
 Plug 'nvim-lua/completion-nvim'
@@ -42,7 +43,6 @@ Plug 'suan/vim-instant-markdown'
 Plug 't9md/vim-choosewin'
 Plug 'tmux-Plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/gem-ctags'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
@@ -153,21 +153,13 @@ nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 map <leader>a za<cr>
 map <leader>s :w<cr>
 map <leader>q :q<cr>
-map <leader>w :NvimTreeFindFile<CR>
 map <leader>v :tabedit ~/.vimrc<CR>
+map <leader>w :NvimTreeFindFileToggle<CR>
+map _ :NvimTreeResize -20<CR>
+map + :NvimTreeResize +20<CR>
 
-" fzf commands
-map <C-F> :Rg<cr>
-map <C-P> :Files<cr>
-map <C-B> :Buffers<cr>
-map <C-M> :Windows<cr>
+" fzf commands [see telescope in init.vim] 
 map <leader>b :Git blame<CR>
-map <leader>c :Commits<CR>
-map <leader>y :History/<CR>
-
-"nnoremap <C-P> <cmd>Telescope find_files<cr>
-"nnoremap <C-F> <cmd>Telescope live_grep<cr>
-"nnoremap <C-B> <cmd>Telescope buffers<cr>
 
 " esay align motions
 vmap <Enter> <Plug>(EasyAlign)
@@ -177,7 +169,6 @@ nmap -  <Plug>(choosewin)
 au! User GoyoEnter nested call funs#goyo_enter()
 au! User GoyoLeave nested call funs#goyo_leave()
 
-au filetype html,eruby,slim imap <buffer><expr><tab> funs#zen_html_tab()
 au filetype mail setlocal formatoptions+=nawrtcp
 
 " customize split borders
@@ -194,9 +185,6 @@ let g:notes_directories = ["~/Dropbox/Sketch/Notes/2021"]
 
 " vimux panel height
 let g:VimuxHeight = "15"
-
-" Collect org files to show in agenda
-let g:org_agenda_files = ['~/Dropbox/Sketch/Orgs/*.org']
 
 " Scroll down supertab behavior
 let g:SuperTabDefaultCompletionType = "<c-n>"
