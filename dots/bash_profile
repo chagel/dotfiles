@@ -35,7 +35,8 @@ if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
     export XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
     fcitx5 -d
 
-    MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
-    # gnome-shell --wayland
+    Hyprland
+    hyprpaper & > /dev/null
+
   fi
 fi
