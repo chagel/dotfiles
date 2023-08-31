@@ -58,10 +58,10 @@ Control+Shift+Alt + n
 m:0xd + c:33
 Control+Shift+Alt + p
 
-# scratchpad
-"/usr/local/bin/st -t scratchpad -g 120x34 less /home/mike/.scratch.note"
-m:0x40 + c:57
-Mod4 + n
+#scratchpad
+"/usr/local/bin/st -t scratchpad -g 120x34 nvim ~/.scratch.note"
+m:0x41 + c:57
+Shift+Mod4 + n
 
 # translation
 "/usr/bin/rofi -sidebar-mode -modi local:define,cloud:translate -show"
