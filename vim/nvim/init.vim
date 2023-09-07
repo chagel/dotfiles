@@ -11,6 +11,11 @@ lua << EOF
   -- empty setup using defaults
   require("nvim-tree").setup()
 
+  -- open the tree when startup
+  local function open_nvim_tree()
+    require("nvim-tree.api").tree.open()
+  end
+
 
   -- telescope 
   local builtin = require('telescope.builtin')
@@ -54,20 +59,20 @@ lua << EOF
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
   end
 
 
   -- Setup LSP 
-  local nvim_lsp = require('lspconfig')
-  local servers = {'pyright', 'gopls', 'rust_analyzer', 'solargraph'}
-  for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-    }
-  end
+--  local nvim_lsp = require('lspconfig')
+--  local servers = {'pyright', 'gopls', 'rust_analyzer', 'solargraph'}
+--  for _, lsp in ipairs(servers) do
+--    nvim_lsp[lsp].setup {
+--      on_attach = on_attach,
+--    }
+--  end
 
   -- Enable treesitter syntax highlight
   require'nvim-treesitter.configs'.setup {
