@@ -48,29 +48,19 @@ windows:
   - fm:
       panes:
         - wtfutil
-        - cd ~/Dotfiles && c
   - todo: t
-  - mail: neomutt
   - irc: weechat
-  - coin: 
-      panes:
-        #- cointop 
-        #- mop 
   - system: 
       panes:
         - htop
-        - journalctl -f
   - music: 
       panes: 
         - ncspot 
-        - lyrics
   - p1:
-      root: ~/Workspaces
+      root: ~/Dotfiles
       panes: 
-        - c
-        - c
+        - ll
   - p2:
       root: ~/Workspaces
       panes: 
-        - c
-        - c
+        - ll

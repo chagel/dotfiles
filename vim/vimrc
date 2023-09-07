@@ -72,16 +72,7 @@ syntax on
 
 colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
-let g:lightline = { 
-      \ 'colorscheme': 'one', 
-      \ 'active': {
-      \    'right': [ [ 'lineinfo' ], [ 'gitbranch', 'percent' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'funs#LightLineFilename',
-      \   'gitbranch': 'FugitiveHead'
-   \ }
-      \ }
+let g:lightline = { 'colorscheme': 'one', 'active': { 'right': [ [ 'lineinfo' ], [ 'gitbranch', 'percent' ] ] }, 'component_function': { 'filename': 'funs#LightLineFilename', 'gitbranch': 'FugitiveHead' } }
 
 
 "set foldmethod=syntax
