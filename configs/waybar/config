@@ -7,16 +7,29 @@
     "spacing": 4, // Gaps between modules (4px)
 
     // Choose the order of the modules
-    "modules-left": ["wlr/workspaces"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["pulseaudio", "network", "battery", "battery#bat2", "custom/cst-clock", "clock"],
 
     // Modules configuration
-    "wlr/workspaces": {
+    "hyprland/workspaces": {
+        "format": "{icon}",
         "on-click": "activate",
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "DP-4": [ 1 ], 
+            "DP-1": [ 6 ]
+        }
     },
     "hyprland/window": {
         "max-length": 200,
