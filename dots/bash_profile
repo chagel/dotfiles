@@ -16,22 +16,7 @@ export PATH=$(ruby -e "puts ENV['PATH'].split(':').uniq.sort.join(':')")
 # enter xwindow after console login
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
 
-
   if [[ -z $DISPLAY && $(tty) == /dev/tty1 && $XDG_SESSION_TYPE == tty ]]; then
-
-    source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
-
-    xset r rate 200 50
-
-    # rescuetime > /dev/null &
-
-    GTK_IM_MODULE=fcitx5
-    QT_IM_MODULE=fcitx5
-    XMODIFIERS=@im=fcitx5
-    XIM_PROGRAM=/usr/bin/fcitx5
-
-    export XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
-    fcitx5 -d
 
     Hyprland
 
