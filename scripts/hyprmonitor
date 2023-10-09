@@ -1,0 +1,10 @@
+#!/bin/sh
+
+right=$(hyprctl monitors -j | jq -r '.[0].name')
+left=$(hyprctl monitors -j | jq -r '.[1].name')
+
+sed -i "s/\$monitor_left\s=.*$/\$monitor_left = $left/g" ~/.config/hypr/hyprland.conf
+
+sed -i "s/\$monitor_right\s=.*$/\$monitor_right = $right/g" ~/.config/hypr/hyprland.conf
+
+echo "Monitors set to $left and $right"

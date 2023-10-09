@@ -1,45 +1,23 @@
 {
-    "layer": "top", // Waybar at top layer
+    "layer": "top", 
     //"output": "DP-4",
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    // "position": "bottom", // (top|bottom|left|right)
+    "height": 30, 
+    // "width": 1280, 
+    "spacing": 4, 
 
-    // Choose the order of the modules
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["custom/mutt", "pulseaudio", "network", "battery", "battery#bat2", "custom/cst-clock", "clock"],
+    "modules-right": ["custom/mutt", "pulseaudio", "network", "upower", "custom/cst-clock", "clock"],
 
     // Modules configuration
-   // "hyprland/workspaces": {
-   //     "format": "{icon}",
-   //     "on-click": "activate",
-   //     // "format-icons": {
-   //     //     "1": "",
-   //     //     "2": "",
-   //     //     "3": "",
-   //     //     "4": "",
-   //     //     "5": "",
-   //     //     "urgent": "",
-   //     //     "active": "",
-   //     //     "default": ""
-   //     // },
-   //     "sort-by-number": true,
-   //     "persistent-workspaces": {
-   //         "DP-4": [ 1 ], 
-   //         "DP-1": [ 6 ]
-   //     }
-   // },
     "hyprland/window": {
         "max-length": 200,
         "separate-outputs": true
     },
-    "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%b%e %a %H:%M}",
-        "on-click": "gnome-calendar",
+    "upower": {
+        "icon-size": 16,
+        "format": " {percentage}",
     },
     "battery": {
         "states": {
@@ -54,18 +32,6 @@
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
-    },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -85,6 +51,21 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%b%e %a %H:%M}",
+        "on-click": "gnome-calendar",
     },
     "custom/cst-clock": {
         "exec": "echo \"CST \"$(TZ=\"Asia/Shanghai\" date +%H:%M)",

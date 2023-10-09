@@ -59,7 +59,7 @@ m:0xd + c:33
 Control+Shift+Alt + p
 
 # scratchpad
-"/usr/local/bin/st -t scratchpad -g 120x34 less /home/mike/.scratch.note"
+"/usr/local/bin/st -t scratchpad -g 120x34 vim /home/mike/.scratch.note"
 m:0x40 + c:57
 Mod4 + n
 
