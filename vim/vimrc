@@ -73,7 +73,7 @@ syntax on
 "let g:dracula_italic = 0
 "colorscheme dracula
 
-colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 let g:lightline = { 
       \ 'colorscheme': 'one', 

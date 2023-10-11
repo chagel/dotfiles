@@ -113,6 +113,10 @@ Control+Shift+Alt + 4
 m:0xd + c:14
 Control+Shift+Alt + 5
 
+"/usr/local/bin/we-fix"
+m:0xd + c:41
+Control+Shift+Alt + f
+
 # screen brightness inc
 # screen brightness dec
 #"sudo /usr/bin/xbacklight -dec 10"

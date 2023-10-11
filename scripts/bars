@@ -1,0 +1,44 @@
+#!/bin/sh
+
+music() {
+  if pgrep -x "ncspot" > /dev/null
+  then
+    if [[ "$(playerctl status)" = "Playing" ]]; then
+      ARTIST=$(playerctl metadata artist)
+      TITLE=$(playerctl metadata title)
+      echo -e "\uf001 $ARTIST - $TITLE"
+    fi
+  fi
+}
+
+mail() {
+  COUNT=$(notmuch count tag:unread)
+  echo -e "\uf0e0 $COUNT"
+}
+
+cal() {
+  COUNT=$(cat $HOME/.config/calendar.tsv | grep "$(date "+%Y-%m-%d")" | wc -l) 
+  echo -e "\uf073 $COUNT"
+}
+
+tasks() {
+  COUNT=$(task +OVERDUE or due:eod or due:tomorrow -COMPLETED count)
+  echo -e "\uf024 $COUNT"
+}
+
+timew() {
+  INTERVAL=$(timew | awk '/Total/{print $2}')
+  if [[ -n "$INTERVAL" ]]; then
+    echo -e "\uf017 $INTERVAL"
+  fi
+}
+
+case "$1" in
+  music) music;;
+  mail)  mail;;
+  cal)   cal;;
+  tasks) tasks;;
+  timew) timew;;
+  # *) ;;
+esac
+
