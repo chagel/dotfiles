@@ -4,14 +4,14 @@ m:0x40 + c:36
 Mod4 + Return
 
 # rofi run 
-"/usr/bin/rofi -show run -sort"
+"/usr/bin/rofi -show drun -sort"
 m:0x40 + c:33
 Mod4 + p
 
 # rofi emoji
-"/usr/bin/rofi -show emoji"
-m:0x40 + c:26
-Mod4 + e
+"/usr/bin/rofi -modi 1pass:rofi-1pass -show 1pass"
+m:0xd + c:26
+Control+Shift+Alt + e
 
 # volume up
 "/usr/bin/pulseaudio-ctl up"
