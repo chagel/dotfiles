@@ -1,5 +1,5 @@
 export TERM=xterm-256color
-export COLORTERM=YES
+export COLORTERM=truecolor
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export PATH="/usr/bin:/usr/local/bin:/usr/sbin:$HOME/.local/bin:/usr/local/sbin:/var/lib/snapd/snap/bin:$PATH"
