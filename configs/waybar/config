@@ -76,7 +76,7 @@
     },
     "custom/mutt": {
         "exec": "echo -e \"\uf0e0 $(notmuch count tag:unread)\"",
-        "interval": 60,
+        "interval": 10,
         "tooltip": false
     },
     "custom/music": {

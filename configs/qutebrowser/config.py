@@ -43,6 +43,7 @@ c.colors.webpage.preferred_color_scheme = 'dark'
 c.downloads.location.directory = '~/Downloads/'
 
 c.content.javascript.clipboard = 'access'
+c.content.notifications.enabled = True
 
 config.bind('X', 'undo')
 config.bind('hh', 'home')
