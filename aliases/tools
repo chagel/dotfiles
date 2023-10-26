@@ -40,6 +40,7 @@ alias tw="task ls due.before:soww"
 alias tm="task long due.before:sonm"
 
 alias m="timew"
+alias ms="timew summary"
 alias mw="timew week"
 alias mm="timew month"
 alias msm="timew summary :month"

@@ -126,6 +126,16 @@ window#waybar.hidden {
     background: #383c4a;
 }
 
+#custom-timew {
+    margin-right: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 10px;
+    transition: none;
+    color: cyan;
+    background: #383c4a;
+}
+
 #upower {
     margin-right: 8px;
     padding-left: 16px;

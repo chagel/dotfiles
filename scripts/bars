@@ -1,6 +1,6 @@
 #!/bin/sh
 
-music() {
+pmusic() {
   if pgrep -x "ncspot" > /dev/null
   then
     if [[ "$(playerctl status)" = "Playing" ]]; then
@@ -11,34 +11,39 @@ music() {
   fi
 }
 
-mail() {
+pmail() {
   COUNT=$(notmuch count tag:unread)
   echo -e "\uf0e0 $COUNT"
 }
 
-cal() {
+pcal() {
   COUNT=$(cat $HOME/.config/calendar.tsv | grep "$(date "+%Y-%m-%d")" | wc -l) 
   echo -e "\uf073 $COUNT"
 }
 
-tasks() {
+ptasks() {
   COUNT=$(task +OVERDUE or due:eod or due:tomorrow -COMPLETED count)
   echo -e "\uf024 $COUNT"
 }
 
-timew() {
+ptimew() {
   INTERVAL=$(timew | awk '/Total/{print $2}')
   if [[ -n "$INTERVAL" ]]; then
     echo -e "\uf017 $INTERVAL"
   fi
 }
 
+pcst() {
+  echo "CST $(TZ='Asia/Shanghai' date +%H:%M)"
+}
+
 case "$1" in
-  music) music;;
-  mail)  mail;;
-  cal)   cal;;
-  tasks) tasks;;
-  timew) timew;;
+  music) pmusic;;
+  mail)  pmail;;
+  cal)   pcal;;
+  tasks) ptasks;;
+  timew) ptimew;;
+  cst) pcst;;
   # *) ;;
 esac
 

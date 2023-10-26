@@ -8,7 +8,7 @@
 
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["custom/music", "custom/tasks", "custom/mutt", "pulseaudio", "network", "battery", "custom/cst-clock", "clock"],
+    "modules-right": ["custom/music", "custom/timew", "custom/tasks", "custom/mutt", "pulseaudio", "network", "battery", "custom/cst-clock", "clock"],
 
     // Modules configuration
     "hyprland/window": {
@@ -87,6 +87,11 @@
     "custom/tasks": {
         "exec": "echo -e \"$(bars tasks)\"",
         "interval": 10,
+        "tooltip": false
+    },
+    "custom/timew": {
+        "exec": "echo -e \"$(bars timew)\"",
+        "interval": 1,
         "tooltip": false
     },
 }
