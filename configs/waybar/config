@@ -64,8 +64,8 @@
     },
     "clock": {
         // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%b%e %a %H:%M}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "format": "{:%H:%M  %a  %b%e}",
         "on-click": "gnome-calendar",
     },
     "custom/cst-clock": {

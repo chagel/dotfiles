@@ -1,0 +1,53 @@
+#!/bin/sh
+
+function togglebars() {
+  if [ "$1" = "show" ]; then
+    mapfun="windowmap"
+  else
+    mapfun="windowunmap"
+  fi
+
+  W1=$(xdotool search --name "sessiondragwnd")
+  for win in $W1
+  do
+    xdotool "$mapfun" "$win"
+  done
+
+  W2=$(xdotool search --name "Wine System Tray")
+  for win in $W2
+  do 
+    xdotool "$mapfun" "$win"
+  done
+}
+
+function hidewins() {
+  if [ "$1" != "0" ]; then
+    exit 0
+  fi
+
+  while : 
+  do
+    for i in `xdotool search --onlyvisible --class WeChat.exe`
+    do
+      NAME=`xdotool getwindowname $i`
+      echo "window name: $NAME"
+      if [ "$NAME" == "" ] || [ "$NAME" == "微信电脑版更新" ]; then
+        xdotool windowunmap $i
+      fi
+    done
+
+    for i in `xdotool search --onlyvisible --class wine`
+    do
+      NAME=`xdotool getwindowname $i`
+      echo "window name: $NAME"
+      if [ "$NAME" == "程序错误" ]; then
+        xdotool windowkill $i
+      fi
+    done
+
+    sleep 1
+  done
+}
+
+togglebars $1
+hidewins $1 > /dev/null 2>&1 &
