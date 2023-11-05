@@ -18,7 +18,7 @@ c.qt.args += [
 
 c.auto_save.session = True
 
-c.editor.command = ['st', '-e', 'nvim', '{file}']
+c.editor.command = ['foot', 'nvim', '{file}']
 
 c.tabs.show = 'multiple'
 c.tabs.position = 'top'
