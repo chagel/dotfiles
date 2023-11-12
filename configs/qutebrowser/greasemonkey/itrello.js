@@ -25,7 +25,7 @@ function hideLists() {
     list = board.children[i]
     title = list.firstElementChild.firstElementChild.firstElementChild.nextElementSibling
     if(title && !title.innerText.match(re)) {
-      list.style.display = 'none'
+      // list.style.display = 'none'
     }
   }
 }

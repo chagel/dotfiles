@@ -1,0 +1,276 @@
+awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=14
+sans: &sans JetBrains Mono:pixelsize=17:style=semibold, Hiragino Sans GB W3:pixelsize=16
+
+bar:
+  monitor: DP-4
+  layer: bottom
+  height: 32
+  location: top
+  spacing: 15
+  margin: 5
+
+  font: xos4 Terminess Powerline:pixelsize=18:style=bold:antialias=true:autohint:true, Cantarell:pixelsize=16, Hiragino Sans GB W3:pixelsize=16, FontAwesome:pixelsize=16
+  background: 1e1e2e99
+  foreground: f8f8f2ff
+
+  left:
+    - script:
+        poll-interval: 300
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["aspace"]
+        anchors:
+          - focused: &focused {deco: {underline: {size: 2, color: ffffffff}}}
+          - occupied: &occupied {foreground: ffffffff}
+          - default: &default {foreground: cccccc99}
+        content:
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_1}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 1
+              conditions:
+                space_1_focused: 
+                  string:
+                    text: "{space_1}"
+                    <<: *focused
+                space_1_occupied:
+                  string:
+                    text: "{space_1}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_2}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 2
+              conditions:
+                space_2_focused: 
+                  string:
+                    text: "{space_2}"
+                    <<: *focused
+                space_2_occupied:
+                  string:
+                    text: "{space_2}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_3}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 3
+              conditions:
+                space_3_focused: 
+                  string:
+                    text: "{space_3}"
+                    <<: *focused
+                space_3_occupied:
+                  string:
+                    text: "{space_3}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_4}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 4
+              conditions:
+                space_4_focused: 
+                  string:
+                    text: "{space_4}"
+                    <<: *focused
+                space_4_occupied:
+                  string:
+                    text: "{space_4}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_5}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 5
+              conditions:
+                space_5_focused: 
+                  string:
+                    text: "{space_5}"
+                    <<: *focused
+                space_5_occupied:
+                  string:
+                    text: "{space_5}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_6}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 6
+              conditions:
+                space_6_focused: 
+                  string:
+                    text: "{space_6}"
+                    <<: *focused
+                space_6_occupied:
+                  string:
+                    text: "{space_6}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_7}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 7
+              conditions:
+                space_7_focused: 
+                  string:
+                    text: "{space_7}"
+                    <<: *focused
+                space_7_occupied:
+                  string:
+                    text: "{space_7}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_8}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 8
+              conditions:
+                space_8_focused: 
+                  string:
+                    text: "{space_8}"
+                    <<: *focused
+                space_8_occupied:
+                  string:
+                    text: "{space_8}"
+                    <<: *occupied
+          - map:
+              margin: 10
+              default:
+                string:
+                  text: "{space_9}"
+                  <<: *default
+              on-click: hyprctl dispatch workspace 9
+              conditions:
+                space_9_focused: 
+                  string:
+                    text: "{space_9}"
+                    <<: *focused
+                space_9_occupied:
+                  string:
+                    text: "{space_9}"
+                    <<: *occupied
+
+  center:
+    - script:
+        poll-interval: 1000
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["awin"]
+        content: 
+          string: 
+            max: 50
+            text: "{title}" 
+            font: *sans 
+
+  right:
+
+    - script:
+        poll-interval: 5000
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["music"]
+        content:
+          map:
+            conditions:
+              status == "Playing":
+                string: 
+                  text: "\uf04b {artist} - {title}"
+                  on-click: sh -c "playerctl pause"
+              status == "Paused":
+                string: 
+                  text: "\uf04c {artist} - {title}"
+                  on-click: sh -c "playerctl play"
+
+    - script:
+        poll-interval: 10000
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["timew"]
+        content:
+          map:
+            conditions:
+              running:
+                string: 
+                  text: "\uf017 {interval} {tag}" 
+                  on-click: sh -c "timew stop"
+
+    - script:
+        poll-interval: 10000
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["tasks"]
+        content: { string: { text: "\uf024 {count}" }}
+
+    - script:
+        poll-interval: 10000
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["mail"]
+        content: { string: { text: "\uf0e0 {unreads}" }}
+
+    - mem:
+       poll-interval: 2500
+       content:
+         string: {text: "{used:gb}GB"}
+
+    - cpu:
+       poll-interval: 2500
+       content:
+         map:
+           conditions:
+             id < 0:
+               - string: {text: "\uf0d8"}
+               - string: {text: "{cpu}%"}
+    - battery:
+        name: BAT0
+        poll-interval: 30000
+        content:
+          string: {text: " {capacity}%"}
+    - pulse:
+        content: 
+          string: 
+            text: "\uf027 {sink_percent}% ({sink_port})"
+            on-click: pavucontrol
+
+    - network:
+        name: wlp2s0
+        poll-interval: 30000
+        content:
+          map:
+            default: 
+              - string: {text: , font: *awesome}
+              - string: {text: " {ssid}"}
+            conditions:
+              state == down: {string: {text: , font: *awesome}}
+
+    - script:
+        poll-interval: 1000
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["cst"]
+        content:  
+          string: 
+            text: "{clock}" 
+            on-click: gnome-clocks
+
+    - clock:
+        time-format: "%H:%M"
+        date-format: "%b %d %a"
+        content:
+          - string: {text: "{date}", right-margin: 5}
+          - string: 
+              text: "{time}"
+              on-click: gnome-calendar
+

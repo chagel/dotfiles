@@ -11,6 +11,9 @@
     "modules-right": ["custom/music", "custom/timew", "custom/tasks", "custom/mutt", "group/hardware", "pulseaudio", "network", "custom/cst-clock", "clock"],
 
     // Modules configuration
+    "hyprland/workspaces": {
+        "show-special": true,
+    },
     "hyprland/window": {
         "max-length": 200,
         "separate-outputs": true
