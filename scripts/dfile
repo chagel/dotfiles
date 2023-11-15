@@ -1,0 +1,21 @@
+#!/bin/sh
+
+DEMENU="fuzzel -d"
+
+ROOT="$HOME"
+
+open_dir_or_file() {
+    dir="$1/$2"
+    if [[ -d "$dir" ]]; then
+        CHOICE=$(ls -1 -t -F "$dir" | $DEMENU)
+        if [ $CHOICE = "/q" ]; then
+            exit 0
+        else
+            open_dir_or_file "$dir" "$CHOICE"
+        fi
+    else
+        xdg-open "$dir" 
+    fi
+}
+
+open_dir_or_file "$ROOT" "/"

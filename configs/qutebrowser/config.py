@@ -1,9 +1,11 @@
+import subprocess 
 
 config.load_autoconfig()
 
 import dracula
 dracula.blood(c, {})
 
+c.qt.environ = {"NODE_PATH": subprocess.check_output(["npm","root","-g"]).decode('utf-8').strip()}
 c.qt.highdpi = True
 c.zoom.default = '100%'
 c.qt.args += [

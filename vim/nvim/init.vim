@@ -81,4 +81,9 @@ lua << EOF
         enable = true
     },
   }
+
+  require("chatgpt").setup{
+    api_key_cmd = "pass keys/openai_api_key"
+  }
+
 EOF

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+DMENU="fuzzel -d"
+find $(echo $PATH | sed 's/:/ /g') -type f -printf '%P\n' | sort -u | $DMENU | sh
