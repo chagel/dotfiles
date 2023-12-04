@@ -7,9 +7,9 @@ export GDK_DPI_SCALE=0.7
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-GTK_IM_MODULE=ibus
-QT_IM_MODULE=ibus
-XMODIFIERS=@im=ibus
+GTK_IM_MODULE=fcitx5
+QT_IM_MODULE=fcitx5
+XMODIFIERS=@im=fcitx5
 export XMODIFIERS GTK_IM_MODULE QT_IM_MODULE
 
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then

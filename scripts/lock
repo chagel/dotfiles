@@ -2,5 +2,5 @@
 
 LOCK_ROOT="$HOME/Dropbox/Pics/Wallpaper/locks/hd"
 IMG=$(ls $LOCK_ROOT/*.png | shuf -n1)
-#i3lock -i $IMG -b -e -f -t
-swaylock -i $IMG
+
+/usr/bin/swaylock -f -c 000000 -i $IMG --indicator-radius 120 --indicator-thickness 20

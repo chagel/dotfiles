@@ -1,0 +1,7 @@
+#!/bin/sh
+
+DMENU="fuzzel -d"
+CMDS=('/usr/bin' '/usr/local/bin' '/usr/sbin' '/usr/local/sbin' '/bin' '/sbin' '/var/lib/flatpak/exports/bin' '/home/mike/Dotfiles/scripts')
+for i in ${CMDS[@]}; do
+    find $i -type f,l -printf '%P\n'
+done | sort -u | $DMENU | sh

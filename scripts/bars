@@ -1,0 +1,103 @@
+#!/bin/sh
+
+pcal() {
+  COUNT=$(cat $HOME/.config/calendar.tsv | grep "$(date "+%Y-%m-%d")" | wc -l) 
+  echo -e "\uf073 $COUNT"
+}
+
+yambar_output() {
+  if [[ -n "$1" ]]; then
+    printf -- '%s\n' "$1"
+  else
+    printf -- '%s\n' ""
+  fi
+}
+
+hptimew() {
+  STATUS=false
+  INTERVAL=$(timew | awk '/Total/{print $2}')
+  TAG=$(timew | awk '/Tracking/{print $2}')
+  if [[ -n "$INTERVAL" ]]; then
+    STATUS=true
+    if [[ -n "$TAG" ]]; then
+      TAG="[${TAG//\"/}]"
+    fi
+    yambar_output "interval|string|$INTERVAL"
+    yambar_output "tag|string|$TAG"
+  fi
+  yambar_output "running|bool|$STATUS"
+  yambar_output 
+}
+
+hptasks() {
+  COUNT=$(task +OVERDUE or due:eod or due:tomorrow -COMPLETED count)
+  yambar_output "count|int|$COUNT"
+  yambar_output 
+}
+
+hpmusic() {
+  PLAYER="playerctl --player=ncspot,spotify,chromium"
+  STATUS=`$PLAYER status`
+  if [[ "$STATUS" = "Playing" || "$STATUS" = "Paused" ]]; then
+    ARTIST=`$PLAYER metadata artist`
+    TITLE=`$PLAYER metadata title`
+    POSITION=`$PLAYER position`
+    yambar_output "artist|string|$ARTIST"
+    yambar_output "title|string|$TITLE"
+    yambar_output "position|string|$POSITION"
+  fi
+  yambar_output "status|string|$STATUS"
+  yambar_output 
+}
+
+
+hpmail() {
+  COUNT=$(notmuch count tag:unread)
+  yambar_output "unreads|string|$COUNT"
+  yambar_output
+}
+
+hpcst() {
+  clock=$(TZ='Asia/Shanghai' date +%H:%M)
+  yambar_output "clock|string|CST $clock"
+  yambar_output  
+}
+
+hpawin() {
+  awin=$(hyprctl activewindow -j | jq -r '.title // empty')
+  yambar_output "title|string|$awin"
+  yambar_output
+}
+
+hpaspace() {
+  tags=(1 2 3 4 5 6 7 8 9 10)
+  aspace=$(hyprctl activeworkspace -j | jq -r '.id')
+  vspace=$(hyprctl workspaces -j | jq -r '.[].id')
+  for i in "${tags[@]}"; do
+    yambar_output "space_$i|string|$i"
+    if [[ "$i" = "$aspace" ]]; then
+      yambar_output "space_${i}_focused|bool|true"
+      yambar_output "space_${i}_occupied|bool|true"
+    elif [[ ${vspace[@]} =~ ${i} ]]; then
+      yambar_output "space_${i}_focused|bool|false"
+      yambar_output "space_${i}_occupied|bool|true"
+    else
+      yambar_output "space_${i}_focused|bool|false"
+      yambar_output "space_${i}_occupied|bool|false"
+    fi
+  done
+  yambar_output
+}
+
+case "$1" in
+  cal)   pcal;;
+  timew) hptimew;;
+  tasks) hptasks;;
+  music) hpmusic;;
+  mail)  hpmail;;
+  cst) hpcst;;
+  awin) hpawin;;
+  aspace) hpaspace;;
+  # *) ;;
+esac
+

@@ -82,7 +82,17 @@ lua << EOF
     },
   }
 
-  require("chatgpt").setup({
-    api_key_cmd = "pass show keys/openai_api_key"
-  })
+  require("chatgpt").setup{
+    api_key_cmd = "pass keys/openai_api_key"
+  }
+
+  require("gitblame").setup {
+    enable = true,
+    message_template = "@<author> • <date> • [<summary>]",
+    date_format = "%r",
+    max_length = 120,
+    min_distance = 10,
+    delay = 1000,
+  }
+
 EOF

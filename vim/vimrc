@@ -15,6 +15,7 @@ Plug 'dhruvasagar/vim-table-mode'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'edkolev/tmuxline.vim' 
 Plug 'ervandew/supertab'
+Plug 'f-person/git-blame.nvim'
 Plug 'github/copilot.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jackMort/ChatGPT.nvim'
@@ -73,7 +74,7 @@ syntax on
 "let g:dracula_italic = 0
 "colorscheme dracula
 
-colorscheme catppuccin " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
+colorscheme catppuccin-mocha " catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
 
 let g:lightline = { 
       \ 'colorscheme': 'one', 
