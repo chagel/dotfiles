@@ -51,14 +51,17 @@ gaps outer 10
 ### Output configuration
 output eDP-1 disable
 
-output DP-4 {
-  pos 0 0 
+set $monitor_left "Dell Inc. DELL P2715Q 54KKD7AA486L"
+set $monitor_right "Dell Inc. DELL U2718Q 4K8X78A61P3L"
+
+output $monitor_left {
+  pos 0 650 
   res 3840x2160 
   scale 1.0
   background ~/.config/wallpaper/1621143328000-local.png fill
 }
 
-output DP-1 {
+output $monitor_right {
   pos 3840 0
   res 3840x2160 
   transform 270 
@@ -66,15 +69,15 @@ output DP-1 {
   background ~/.config/wallpaper/1621540959000-seattle.png fill
 }
 
-workspace $ws1 output DP-4
-workspace $ws2 output DP-4
-workspace $ws3 output DP-4
-workspace $ws4 output DP-4
+workspace $ws1 output $monitor_left
+workspace $ws2 output $monitor_left
+workspace $ws3 output $monitor_left
+workspace $ws4 output $monitor_left
 
-workspace $ws6 output DP-1 
-workspace $ws7 output DP-1 
-workspace $ws8 output DP-1 
-workspace $ws9 output DP-1
+workspace $ws6 output $monitor_right
+workspace $ws7 output $monitor_right
+workspace $ws8 output $monitor_right
+workspace $ws9 output $monitor_right
 
 
 ### Idle configuration
@@ -85,15 +88,19 @@ exec swayidle -w \
          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
 
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
+input "type:keyboard" {
+  repeat_rate 30
+  repeat_delay 200
+}
+
+input "76:613:Apple_Inc._Magic_Trackpad_2" {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  middle_emulation enabled
+  pointer_accel 1
+}
+
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -111,10 +118,10 @@ exec swayidle -w \
     # Start your launcher
     bindsym $mod+p exec drun
 
-    # hibernate
     bindsym Mod1+Shift+Ctrl+w exec rofi -show p -modi p:rofi-power-menu
     bindsym Mod1+Shift+Ctrl+s exec screenshot
     bindsym Mod1+Shift+Ctrl+k exec feh ~/.keyboard.png
+    bindsym Mod1+Shift+Ctrl+l exec lock
     bindsym $mod+g exec rusher
     bindsym $mod+grave exec $notepad
     bindsym F4 exec pavucontrol
@@ -266,14 +273,9 @@ bindsym $mod+r mode "resize"
 #     }
 # }
 
-# input
-input "12951:6505:ZSA_Moonlander_Mark_I_Keyboard" {
-  repeat_rate 50
-  repeat_delay 200
-}
-
 for_window [class="feh"] floating enable
 for_window [class="feh"] resize set 1600 1200
+for_window [shell="xwayland"] title_format "[XWayland] %title"
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP SWAYSOCK
@@ -281,6 +283,7 @@ exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CU
 exec fcitx5 -d
 exec we-fix 0
 exec yambar
+exec wlsunset -S 7:00 -s 18:30 -t 5000
 exec systemctl --user start mako
 exec systemctl --user start puma-dev
 
