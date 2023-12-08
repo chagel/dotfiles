@@ -29,7 +29,7 @@ alias a="gcalcli"
 alias aw="gcalcli calw"
 alias am="gcalcli calm"
 alias aa="gcalcli agenda"
-alias an="gcalcli --calendar='chagel@gmail.com' quick "
+alias an="gcalcli --calendar='MGC' quick "
 
 alias tweet="$HOME/.rbenv/shims/t"
 alias t="task"

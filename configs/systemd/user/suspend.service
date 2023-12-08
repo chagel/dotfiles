@@ -1,0 +1,18 @@
+# disconnect touchpad while suspending, will reconnect it while resuming
+# ExecStartPre=bluetoothctl disconnect A8:91:3D:E3:8C:70
+
+[Unit]
+Description=User suspend actions
+Before=sleep.target
+
+[Service]
+User=%I
+Type=forking
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-1
+ExecStart=/home/mike/Dotfiles/scripts/lock
+ExecStartPost=/usr/bin/sleep 1
+
+[Install]
+WantedBy=sleep.target

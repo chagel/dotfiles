@@ -70,21 +70,26 @@ hpawin() {
 }
 
 hpaspace() {
-  tags=(1 2 3 4 5 6 7 8 9 10)
-  aspace=$(hyprctl activeworkspace -j | jq -r '.id')
-  vspace=$(hyprctl workspaces -j | jq -r '.[].id')
-  for i in "${tags[@]}"; do
+  local aspace=$(hyprctl activeworkspace -j | jq -r '.id')
+  local workspaces_json=$(hyprctl workspaces -j)
+  local vspace=($(echo "$workspaces_json" | jq -r '.[].id'))
+
+  local i
+  for i in {1..10}; do
     yambar_output "space_$i|string|$i"
-    if [[ "$i" = "$aspace" ]]; then
-      yambar_output "space_${i}_focused|bool|true"
-      yambar_output "space_${i}_occupied|bool|true"
-    elif [[ ${vspace[@]} =~ ${i} ]]; then
-      yambar_output "space_${i}_focused|bool|false"
-      yambar_output "space_${i}_occupied|bool|true"
-    else
-      yambar_output "space_${i}_focused|bool|false"
-      yambar_output "space_${i}_occupied|bool|false"
+
+    local is_focused=false
+    local is_occupied=false
+
+    if [[ "$i" == "$aspace" ]]; then
+      is_focused=true
+      is_occupied=true
+    elif [[ " ${vspace[*]} " =~ " ${i} " ]]; then
+      is_occupied=true
     fi
+
+    yambar_output "space_${i}_focused|bool|$is_focused"
+    yambar_output "space_${i}_occupied|bool|$is_occupied"
   done
   yambar_output
 }

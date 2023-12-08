@@ -22,151 +22,81 @@ bar:
           - focused: &focused {deco: {underline: {size: 2, color: ffffffff}}}
           - occupied: &occupied {foreground: ffffffff}
           - default: &default {foreground: cccccc99}
+          - map: &mbase
+              margin: 10
+
         content:
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_1}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 1
+              <<: *mbase
+              default: { string: { text: "{space_1}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_1}
               conditions:
-                space_1_focused: 
-                  string:
-                    text: "{space_1}"
-                    <<: *focused
-                space_1_occupied:
-                  string:
-                    text: "{space_1}"
-                    <<: *occupied
+                space_1_focused: { string: { text: "{space_1}", <<: *focused }}
+                space_1_occupied: { string: { text: "{space_1}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_2}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 2
+              <<: *mbase
+              default: { string: { text: "{space_2}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_2}
               conditions:
-                space_2_focused: 
-                  string:
-                    text: "{space_2}"
-                    <<: *focused
-                space_2_occupied:
-                  string:
-                    text: "{space_2}"
-                    <<: *occupied
+                space_2_focused: { string: { text: "{space_2}", <<: *focused }}
+                space_2_occupied: { string: { text: "{space_2}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_3}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 3
+              <<: *mbase
+              default: { string: { text: "{space_3}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_3}
               conditions:
-                space_3_focused: 
-                  string:
-                    text: "{space_3}"
-                    <<: *focused
-                space_3_occupied:
-                  string:
-                    text: "{space_3}"
-                    <<: *occupied
+                space_3_focused: { string: { text: "{space_3}", <<: *focused }}
+                space_3_occupied: { string: { text: "{space_3}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_4}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 4
+              <<: *mbase
+              default: { string: { text: "{space_4}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_4}
               conditions:
-                space_4_focused: 
-                  string:
-                    text: "{space_4}"
-                    <<: *focused
-                space_4_occupied:
-                  string:
-                    text: "{space_4}"
-                    <<: *occupied
+                space_4_focused: { string: { text: "{space_4}", <<: *focused }}
+                space_4_occupied: { string: { text: "{space_4}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_5}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 5
+              <<: *mbase
+              default: { string: { text: "{space_5}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_5}
               conditions:
-                space_5_focused: 
-                  string:
-                    text: "{space_5}"
-                    <<: *focused
-                space_5_occupied:
-                  string:
-                    text: "{space_5}"
-                    <<: *occupied
+                space_5_focused: { string: { text: "{space_5}", <<: *focused }}
+                space_5_occupied: { string: { text: "{space_5}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_6}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 6
+              <<: *mbase
+              default: { string: { text: "{space_6}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_6}
               conditions:
-                space_6_focused: 
-                  string:
-                    text: "{space_6}"
-                    <<: *focused
-                space_6_occupied:
-                  string:
-                    text: "{space_6}"
-                    <<: *occupied
+                space_6_focused: { string: { text: "{space_6}", <<: *focused }}
+                space_6_occupied: { string: { text: "{space_6}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_7}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 7
+              <<: *mbase
+              default: { string: { text: "{space_7}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_7}
               conditions:
-                space_7_focused: 
-                  string:
-                    text: "{space_7}"
-                    <<: *focused
-                space_7_occupied:
-                  string:
-                    text: "{space_7}"
-                    <<: *occupied
+                space_7_focused: { string: { text: "{space_7}", <<: *focused }}
+                space_7_occupied: { string: { text: "{space_7}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_8}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 8
+              <<: *mbase
+              default: { string: { text: "{space_8}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_8}
               conditions:
-                space_8_focused: 
-                  string:
-                    text: "{space_8}"
-                    <<: *focused
-                space_8_occupied:
-                  string:
-                    text: "{space_8}"
-                    <<: *occupied
+                space_8_focused: { string: { text: "{space_8}", <<: *focused }}
+                space_8_occupied: { string: { text: "{space_8}", <<: *occupied }}
+
           - map:
-              margin: 10
-              default:
-                string:
-                  text: "{space_9}"
-                  <<: *default
-              on-click: hyprctl dispatch workspace 9
+              <<: *mbase
+              default: { string: { text: "{space_9}", <<: *default }}
+              on-click: hyprctl dispatch workspace {space_9}
               conditions:
-                space_9_focused: 
-                  string:
-                    text: "{space_9}"
-                    <<: *focused
-                space_9_occupied:
-                  string:
-                    text: "{space_9}"
-                    <<: *occupied
+                space_9_focused: { string: { text: "{space_9}", <<: *focused }}
+                space_9_occupied: { string: { text: "{space_9}", <<: *occupied }}
 
   center:
     - script:
@@ -233,7 +163,7 @@ bar:
            conditions:
              id < 0:
                - string: {text: "\uf0d8"}
-               - string: {text: "{cpu}%"}
+               - string: {text: "{cpu:02}%"}
     - battery:
         name: BAT0
         poll-interval: 30000
