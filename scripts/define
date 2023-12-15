@@ -1,8 +1,18 @@
 #!/bin/sh
 
-if [ ! -z "$@" ]
-then
-  sdcv -n -e -0 -j $@ | jq -r ".[0].definition"
-else
-  cat /usr/share/dict/words
-fi
+DMENU="fuzzel -d"
+CHOICE="$1"
+
+while true; do
+    if [ -z "$CHOICE" ]; then
+        CHOICE=$(cat /usr/share/dict/words | $DMENU)
+    elif [ $CHOICE = "/q" ]; then
+        exit 0
+    else
+        RESULT=$(sdcv -n -e -0 -j "$CHOICE" | jq -r ".[0].definition")
+        if [ -n "$RESULT" ]; then
+            CHOICE=$(echo "$RESULT" | $DMENU)
+        fi
+    fi
+
+done

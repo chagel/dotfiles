@@ -8,9 +8,6 @@ set $up k
 set $right l
 set $term foot
 
-
-set $notepad st -t notepad less ~/Dropbox/Sketch/Notes/scratch.note
-
 set $ws1 " 1 "
 set $ws2 " 2 "
 set $ws3 " 3 "
@@ -84,8 +81,10 @@ workspace $ws9 output $monitor_right
 #
 
 exec swayidle -w \
-         timeout 300 lock \
-         timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"'
+         timeout 600 lock \
+         timeout 1500 'swaymsg "output * dpms off"' \
+         resume 'swaymsg "output * dpms on"' \
+         before-sleep 'lock'
 
 ### Input configuration
 input "type:keyboard" {
@@ -122,8 +121,11 @@ input "76:613:Apple_Inc._Magic_Trackpad_2" {
     bindsym Mod1+Shift+Ctrl+s exec screenshot
     bindsym Mod1+Shift+Ctrl+k exec feh ~/.keyboard.png
     bindsym Mod1+Shift+Ctrl+l exec lock
+    bindsym $mod+i exec dfile
+    bindsym $mod+o exec define
     bindsym $mod+g exec rusher
-    bindsym $mod+grave exec $notepad
+    # bindsym $mod+n exec foot -T scratchpad vim ~/.scratch.note #has some issues of copying and pasting
+    bindsym $mod+n exec neovide ~/.scratch.note
     bindsym F4 exec pavucontrol
     bindsym F10 exec blueman-manager
     bindsym Mod1+Shift+Ctrl+minus exec pulseaudio-ctl down
@@ -203,13 +205,13 @@ input "76:613:Apple_Inc._Magic_Trackpad_2" {
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+space layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+Shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+f floating toggle
+    bindsym $mod+f floating toggle
 
     # Swap focus between the tiling area and the floating area
     #bindsym $mod+space focus mode_toggle
@@ -242,10 +244,10 @@ mode "resize" {
     bindsym $right resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize shrink width 50px
+    bindsym Down resize grow height 50px
+    bindsym Up resize shrink height 50px
+    bindsym Right resize grow width 50px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -253,28 +255,13 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-# bar {
-#     position top
-
-#     tray_output none
-
-#     status_command while status-bar; do sleep 1; done
-#     font pango:Cantarell 14, FontAwesome 14
-
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         focused_workspace #32323200 #777777 #f5f5f5
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
-# }
 
 for_window [class="feh"] floating enable
 for_window [class="feh"] resize set 1600 1200
+for_window [title="scratchpad"] floating enable
+for_window [title="scratchpad"] resize set 1600 1200
+for_window [app_id="neovide"] floating enable
+for_window [app_id="neovide"] resize set 1600 1200
 for_window [shell="xwayland"] title_format "[XWayland] %title"
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

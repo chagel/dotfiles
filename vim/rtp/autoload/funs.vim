@@ -19,3 +19,20 @@ endfunction
 function! funs#LightLineFilename()
   return pathshorten(fnamemodify(expand('%'), ":."))
 endfunction
+
+function! funs#config_neovide()
+  if exists("g:neovide")
+    let g:neovide_transparency = 0.8
+    set guifont=JetBrains\ Mono:h14
+    set linespace=10
+    let g:neovide_scale_factor = 1.0
+    let g:neovide_padding_top = 20
+    let g:neovide_padding_bottom = 10
+    let g:neovide_padding_right = 10
+    let g:neovide_padding_left = 10
+    let g:neovide_scroll_animation_length = 0
+    let g:neovide_cursor_animation_length = 0
+    let g:neovide_cursor_trail_size = 0
+
+  endif
+endfunction
