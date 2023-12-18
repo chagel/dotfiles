@@ -16,6 +16,7 @@ bar:
   left:
     - i3:
         sort: ascending
+        strip-workspace-numbers: true
         anchors:
           - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
           - string: &default {<<: *i3_common, text: "{name}"}

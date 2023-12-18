@@ -81,7 +81,7 @@ workspace $ws9 output $monitor_right
 #
 
 exec swayidle -w \
-         timeout 600 lock \
+         timeout 600 'lock' \
          timeout 1500 'swaymsg "output * dpms off"' \
          resume 'swaymsg "output * dpms on"' \
          before-sleep 'lock'
