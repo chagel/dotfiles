@@ -89,6 +89,28 @@ hpaspace() {
   yambar_output
 }
 
+ybspace() {
+  tags=(1 2 3 4 5 6 7 8 9)
+  filter='[.[] | {name: .name|gsub(" "; ""), visible: .visible, focused: .focused}]'
+  spaces=$(swaymsg -t get_workspaces -r | jq -r "$filter")
+  for i in "${tags[@]}"; do
+    yambar_output "space_$i|string|$i"
+    space=$(echo "$spaces" | jq -c '.[] | select(.name | contains("'$i'"))')
+    if [[ -n "$space" ]]; then
+      visible=$(echo "$space" | jq -r '.visible')
+      focused=$(echo "$space" | jq -r '.focused')
+      yambar_output "space_${i}_visible|bool|$visible"
+      yambar_output "space_${i}_focused|bool|$focused"
+      yambar_output "space_${i}_occupied|bool|true"
+    else
+      yambar_output "space_${i}_visible|bool|false"
+      yambar_output "space_${i}_focused|bool|false"
+      yambar_output "space_${i}_occupied|bool|false"
+    fi
+  done
+  yambar_output
+}
+
 case "$1" in
   cal)   pcal;;
   timew) hptimew;;
@@ -97,7 +119,7 @@ case "$1" in
   mail)  hpmail;;
   cst) hpcst;;
   awin) hpawin;;
-  aspace) hpaspace;;
+  aspace) ybspace;;
   # *) ;;
 esac
 

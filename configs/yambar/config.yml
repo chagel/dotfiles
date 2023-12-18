@@ -14,22 +14,89 @@ bar:
   foreground: f8f8f2ff
 
   left:
-    - i3:
-        sort: ascending
-        strip-workspace-numbers: true
+    - script:
+        poll-interval: 300
+        path: /home/mike/Dotfiles/scripts/bars
+        args: ["aspace"]
         anchors:
-          - string: &i3_common {margin: 5, on-click: "swaymsg --quiet workspace {name}"}
-          - string: &default {<<: *i3_common, text: "{name}"}
           - focused: &focused {deco: {underline: {size: 2, color: ffffffff}}}
+          - occupied: &occupied {foreground: ffffffff}
+          - default: &default {foreground: cccccc99}
+          - map: &mbase
+              margin: 10
 
         content:
-          "": 
-            map:
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_1}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_1}
               conditions:
-                state == focused: {string: {<<: [*default, *focused]}}
-                state == unfocused: {string: {<<: *default}}
-                state == invisible: {string: {<<: *default}}
-                state == urgent: {string: {<<: *default}}
+                space_1_focused: { string: { text: "{space_1}", <<: *focused }}
+                space_1_occupied: { string: { text: "{space_1}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_2}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_2}
+              conditions:
+                space_2_focused: { string: { text: "{space_2}", <<: *focused }}
+                space_2_occupied: { string: { text: "{space_2}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_3}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_3}
+              conditions:
+                space_3_focused: { string: { text: "{space_3}", <<: *focused }}
+                space_3_occupied: { string: { text: "{space_3}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_4}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_4}
+              conditions:
+                space_4_focused: { string: { text: "{space_4}", <<: *focused }}
+                space_4_occupied: { string: { text: "{space_4}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_5}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_5}
+              conditions:
+                space_5_focused: { string: { text: "{space_5}", <<: *focused }}
+                space_5_occupied: { string: { text: "{space_5}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_6}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_6}
+              conditions:
+                space_6_focused: { string: { text: "{space_6}", <<: *focused }}
+                space_6_occupied: { string: { text: "{space_6}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_7}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_7}
+              conditions:
+                space_7_focused: { string: { text: "{space_7}", <<: *focused }}
+                space_7_occupied: { string: { text: "{space_7}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_8}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_8}
+              conditions:
+                space_8_focused: { string: { text: "{space_8}", <<: *focused }}
+                space_8_occupied: { string: { text: "{space_8}", <<: *occupied }}
+
+          - map:
+              <<: *mbase
+              default: { string: { text: "{space_9}", <<: *default }}
+              on-click: swaymsg --quiet workspace {space_9}
+              conditions:
+                space_9_focused: { string: { text: "{space_9}", <<: *focused }}
+                space_9_occupied: { string: { text: "{space_9}", <<: *occupied }}
 
   center:
     - foreign-toplevel:
