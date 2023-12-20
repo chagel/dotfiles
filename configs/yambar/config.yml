@@ -1,5 +1,5 @@
 awesome: &awesome Font Awesome 6 Free:style=solid:pixelsize=14
-sans: &sans JetBrains Mono:pixelsize=17:style=semibold, Hiragino Sans GB W3:pixelsize=16
+sans: &sans JetBrains Mono:pixelsize=17:style=medium, Hiragino Sans GB W3:pixelsize=16
 
 bar:
   monitor: DP-4

@@ -62,8 +62,8 @@ windows:
         - journalctl -f
   - music: 
       panes: 
-        - ncspot 
-        - lyrics
+        # - ncspot 
+        # - lyrics
   - p1:
       root: ~/Workspaces
       panes: 

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+mem() {
+  ps -e -o pid,comm,pmem,pcpu,rss | awk '{arr[$2]+=$5}; END {for (i in arr) {printf("%s %.f\n", i, arr[i]/1024)}}' | sort -nk2 --reverse | head -n10 | uplot bar -d " " -t "Mem Usage(MB)"
+}
+
+case "$1" in
+  mem) mem;;
+  *) mem;;
+esac
+

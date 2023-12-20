@@ -23,22 +23,23 @@ set $ws10 "10"
 font pango: Cantarell:style=Regular 12 
 
 # Window borders 
-default_border pixel 1 
+default_border pixel 2 
 #hide_edge_borders smart 
 
 # Set colors
 set $bg #171717
 set $fg #333333
-set $br #777777
+set $br #8f11a0
+# set $br #3f1e85
 set $ia #232425
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $br     $br     $fg     $bg       $br
-#client.focused_inactive $bg     $bg     $fg     $bg       $bg
-#client.unfocused        $bg     $bg     $fg     $bg       $bg
-#client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
-#client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
-#client.background $bg
+client.focused_inactive $bg     $bg     $fg     $bg       $bg
+client.unfocused        $bg     $bg     $fg     $bg       $bg
+# client.urgent          $br     $br     $fg     $bg       $br #currently not implemented
+# client.placeholder     $br     $br     $fg     $bg       $br #currently not implemented
+# client.background $bg
 
 
 gaps inner 10
@@ -46,35 +47,36 @@ gaps outer 10
 #smart_gaps on
 
 ### Output configuration
-output eDP-1 disable
+output eDP-1 enable
+output eDP-1 mode 3840x2160@60Hz scale 1.0
 
-set $monitor_left "Dell Inc. DELL P2715Q 54KKD7AA486L"
-set $monitor_right "Dell Inc. DELL U2718Q 4K8X78A61P3L"
-
-output $monitor_left {
-  pos 0 650 
-  res 3840x2160 
-  scale 1.0
-  background ~/.config/wallpaper/1621143328000-local.png fill
-}
-
-output $monitor_right {
-  pos 3840 0
-  res 3840x2160 
-  transform 270 
-  scale 1.0
-  background ~/.config/wallpaper/1621540959000-seattle.png fill
-}
-
-workspace $ws1 output $monitor_left
-workspace $ws2 output $monitor_left
-workspace $ws3 output $monitor_left
-workspace $ws4 output $monitor_left
-
-workspace $ws6 output $monitor_right
-workspace $ws7 output $monitor_right
-workspace $ws8 output $monitor_right
-workspace $ws9 output $monitor_right
+#set $monitor_left "Dell Inc. DELL P2715Q 54KKD7AA486L"
+#set $monitor_right "Dell Inc. DELL U2718Q 4K8X78A61P3L"
+#
+#output $monitor_left {
+#  pos 0 650 
+#  res 3840x2160 
+#  scale 1.0
+#  background ~/.config/wallpaper/1621143328000-local.png fill
+#}
+#
+#output $monitor_right {
+#  pos 3840 0
+#  res 3840x2160 
+#  transform 270 
+#  scale 1.0
+#  background ~/.config/wallpaper/1621540959000-seattle.png fill
+#}
+#
+#workspace $ws1 output $monitor_left
+#workspace $ws2 output $monitor_left
+#workspace $ws3 output $monitor_left
+#workspace $ws4 output $monitor_left
+#
+#workspace $ws6 output $monitor_right
+#workspace $ws7 output $monitor_right
+#workspace $ws8 output $monitor_right
+#workspace $ws9 output $monitor_right
 
 
 ### Idle configuration
@@ -90,6 +92,7 @@ exec swayidle -w \
 input "type:keyboard" {
   repeat_rate 30
   repeat_delay 200
+  xkb_options ctrl:nocaps
 }
 
 input "76:613:Apple_Inc._Magic_Trackpad_2" {
@@ -208,7 +211,7 @@ input "76:613:Apple_Inc._Magic_Trackpad_2" {
     bindsym $mod+space layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+Shift+f fullscreen
+    bindsym $mod+m fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+f floating toggle
