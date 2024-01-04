@@ -63,6 +63,8 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
+source ~/.bash_profile
+
 export NVM_AUTO_USE=true
 plugins=(
   archlinux
@@ -87,7 +89,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -117,4 +118,3 @@ bindkey "^[[B" history-substring-search-down
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.bash_profile
