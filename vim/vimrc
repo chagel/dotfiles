@@ -81,6 +81,7 @@ let g:lightline = { 'colorscheme': 'one', 'active': { 'right': [ [ 'lineinfo' ],
 "set foldmethod=syntax
 "set foldlevelstart=1
 "highlight Folded guibg=grey guifg=blue
+set guifont=Monaco:h12
 
 let mapleader=","
 let maplocalleader = ",,"
