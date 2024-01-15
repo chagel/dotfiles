@@ -6,7 +6,7 @@ alias lt="ls -lGt | head"
 alias lg="ls -la | grep"
 alias o="handlr open"
 
-alias vim="/usr/local/bin/nvim"
+alias vim="$(which nvim)"
 alias e="vim"
 
 alias vie="vim ~/.vimrc"
@@ -16,6 +16,6 @@ alias vid="vim ~/Dotfiles/"
 
 export LESS=' -R '
 
-export EDITOR="/usr/local/bin/nvim"
+export EDITOR="$(which vim)"
 export CDPATH="$HOME/workspace"
 

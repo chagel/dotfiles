@@ -33,7 +33,7 @@ vim-config:
 
 vim-update:
 	## update vim plugins
-	@/usr/local/bin/nvim -E -u NONE -S ${HOME}/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
+	@nvim -E -u NONE -S ${HOME}/.vimrc +PlugUpgrade +PlugInstall +PlugUpdate +qall
 
 zsh-config:
 	## config zsh 
@@ -47,6 +47,7 @@ tmux-config:
 	## config tmux 
 	@ln -vsfn ${BASE}/tmux ${HOME}/.tmux
 	@ln -vsf ${BASE}/tmux/tmux.conf ${HOME}/.tmux.conf
+	@rm -rf ${HOME}/.tmux/plugins/tpm
 	@git clone https://github.com/tmux-plugins/tpm ${HOME}/.tmux/plugins/tpm
 
 tmux-update:
