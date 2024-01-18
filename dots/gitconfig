@@ -21,20 +21,17 @@
 
 
 [diff]
-  tool = vimdiff
-[difftool "vimdiff"]
-  cmd = vimdiff \"$LOCAL\" \"$REMOTE\"
+    tool = nvimdiff
 [difftool]
-  prompt = false
-
+    prompt = false
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
-[mergetool "vimdiff"]
-	trustExitCode = true
+    tool = nvimdiff
 [mergetool]
-  prompt = false
-
+    prompt = true
+[mergetool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\" \"$MERGED\" -c 'wincmd w' -c 'wincmd J'"
 [core]
 	excludesfile = ~/.gitignore_global
 [init]

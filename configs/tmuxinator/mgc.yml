@@ -47,15 +47,11 @@ root: ~/
 windows:
   - fm:
       panes:
-        - wtfutil
-  - todo: t
-  - irc: weechat
+        - c
+  - todo: tt
   - system: 
       panes:
-        - htop
-  - music: 
-      panes: 
-        - ncspot 
+        - btop
   - p1:
       root: ~/Dotfiles
       panes: 

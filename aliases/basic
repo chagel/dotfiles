@@ -16,6 +16,6 @@ alias vid="vim ~/Dotfiles/"
 
 export LESS=' -R '
 
-export EDITOR="$(which vim)"
+export EDITOR="$(which nvim)"
 export CDPATH="$HOME/workspace"
 

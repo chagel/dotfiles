@@ -39,7 +39,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'pechorin/any-jump.vim'
 Plug 'reedes/vim-wordy'
 Plug 'sheerun/vim-polyglot'
-Plug 'suan/vim-instant-markdown'
 Plug 't9md/vim-choosewin'
 Plug 'tmux-Plugins/vim-tmux-focus-events'
 Plug 'tpope/vim-commentary'
@@ -180,7 +179,6 @@ let g:VimuxHeight = "15"
 
 " Scroll down supertab behavior
 let g:SuperTabDefaultCompletionType = "<c-n>"
-let g:instant_markdown_autostart = 0
 
 " Goyo zen writing 
 let g:limelight_conceal_ctermfg = 'gray'
