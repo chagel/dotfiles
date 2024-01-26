@@ -1,8 +1,25 @@
-#!/bin/sh
+#!/bin/bash
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title trans
+# @raycast.mode fullOutput
+
+# Optional parameters:
+# @raycast.icon 📖
+# @raycast.argument1 { "type": "text", "placeholder": "Placeholder" }
+# @raycast.packageName us.gchen.trans
+
+# Documentation:
+# @raycast.description Customized trans
+# @raycast.author MGC
+# @raycast.authorURL https://raycast.com/chagel
+
+# echo "Hello World! Argument1 value: "$1""
 
 if [ ! -z "$@" ]
 then
-  trans $@ :zh -indent 0 -no-ansi -speak
+  trans $@ :zh -indent 0 -no-ansi -n Daniel -speak -j
 else
   cat /usr/share/dict/words
 fi
