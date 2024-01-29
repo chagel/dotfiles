@@ -1,0 +1,11 @@
+#!/bin/bash
+
+GPP_CMD="$(gpgconf --list-dirs libexecdir)/gpg-preset-passphrase"
+
+function gpg_cache {
+  gpg-connect-agent /bye &> /dev/null
+  op signin
+  op read "op://Personal/o6rgc2fxf56dcer6exw5krkoqi/password" | eval $GPP_CMD --preset 6BB96A3FFC78092FDC99438494F90B5932E1FF44
+}
+
+gpg_cache
