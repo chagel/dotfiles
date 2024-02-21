@@ -18,6 +18,7 @@ Plug 'ervandew/supertab'
 Plug 'github/copilot.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'jackMort/ChatGPT.nvim'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
