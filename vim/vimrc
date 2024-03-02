@@ -88,7 +88,7 @@ endif
 
 let mapleader=","
 let maplocalleader = ",,"
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 set number
 set relativenumber
 
